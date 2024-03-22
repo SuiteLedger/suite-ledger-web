@@ -85,15 +85,15 @@
                             <div class="collapse" id="collapsePayments" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="payment-proofs.php">Manage Payment Proofs</a>
-                                    <a class="nav-link" href="payments.php">Payment History</a>
+                                    <a class="nav-link" href="payment-history.php">Payment History</a>
                                 </nav>
                             </div>
-                            <a class="nav-link" href="index.php">
-                                <div class="sb-nav-link-icon"><i href="add-apartment-complex.php" class="fas fa-tachometer-alt"></i></div>
+                            <a class="nav-link" href="maintainence-fee.php">
+                                <div class="sb-nav-link-icon"><i href="maintainence-fee.php" class="fas fa-tachometer-alt"></i></div>
                                 Maintenance Fees
                             </a>
-                            <a class="nav-link" href="index.php">
-                                <div class="sb-nav-link-icon"><i href="add-apartment-complex.php" class="fas fa-tachometer-alt"></i></div>
+                            <a class="nav-link" href="manage-subscription.php">
+                                <div class="sb-nav-link-icon"><i href="manage-subscription.php" class="fas fa-tachometer-alt"></i></div>
                                 Manage Subscriptions
                             </a>
                         </div>
