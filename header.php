@@ -84,7 +84,7 @@
                             </a>
                             <div class="collapse" id="collapsePayments" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="manage-payment-proofs.php">Manage payment proofs</a>
+                                    <a class="nav-link" href="payment-proofs.php">Manage Payment Proofs</a>
                                     <a class="nav-link" href="payments.php">Payment History</a>
                                 </nav>
                             </div>
