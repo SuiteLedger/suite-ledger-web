@@ -7,6 +7,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>SuiteLedger</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -76,17 +77,25 @@
                                 </nav>
                             </div>
                             <div class="sb-sidenav-menu-heading">Payments & Services</div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseComplex" aria-expanded="false" aria-controls="collapseComplex">
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePayments" aria-expanded="false" aria-controls="collapsePayments">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Payments
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="collapseComplex" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <div class="collapse" id="collapsePayments" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="approve-payments.php">Approve Payments</a>
-                                    <a class="nav-link" href="payments.php">List Apartment Complex</a>
+                                    <a class="nav-link" href="manage-payment-proofs.php">Manage payment proofs</a>
+                                    <a class="nav-link" href="payments.php">Payment History</a>
                                 </nav>
                             </div>
+                            <a class="nav-link" href="index.php">
+                                <div class="sb-nav-link-icon"><i href="add-apartment-complex.php" class="fas fa-tachometer-alt"></i></div>
+                                Maintenance Fees
+                            </a>
+                            <a class="nav-link" href="index.php">
+                                <div class="sb-nav-link-icon"><i href="add-apartment-complex.php" class="fas fa-tachometer-alt"></i></div>
+                                Manage Subscriptions
+                            </a>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
