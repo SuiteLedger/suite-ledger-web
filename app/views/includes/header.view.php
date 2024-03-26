@@ -57,6 +57,8 @@
                         <nav class="sb-sidenav-menu-nested nav">
                             <a class="nav-link" href="<?= ROOT_DIRECTORY ?>/user/add">Add User Accounts</a>
                             <a class="nav-link" href="<?= ROOT_DIRECTORY ?>/user/list">List User Accounts</a>
+                            <a class="nav-link" href="<?= ROOT_DIRECTORY ?>/user/list-user-roles">List User Roles</a>
+                            <a class="nav-link" href="<?= ROOT_DIRECTORY ?>/user/add-user-roles">Add User Roles</a>
                         </nav>
                     </div>
                     <div class="sb-sidenav-menu-heading">Apartment</div>
