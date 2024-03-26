@@ -130,6 +130,22 @@
                             </div>
                             Manage Subscriptions
                         </a>
+
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                            data-bs-target="#collapsePackage" aria-expanded="false" aria-controls="collapsePackage">
+                            <div class="sb-nav-link-icon"><i class="fas fa-archive"></i></div>
+                            Package
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapsePackage" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="<?= ROOT_DIRECTORY ?>/package/add">
+                                    Add Packages</a>
+                                <a class="nav-link" href="<?= ROOT_DIRECTORY ?>/package/list">
+                                    List Packages</a>
+                            </nav>
+                        </div>
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
