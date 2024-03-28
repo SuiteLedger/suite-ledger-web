@@ -20,6 +20,13 @@
                         <div class="card shadow-lg border-0 rounded-lg mt-5">
                             <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
                             <div class="card-body">
+
+                                <?php if(getPageMessage()) : ?>
+                                    <div class="alert alert-danger" role="alert">
+                                        <?=getPageMessage(true)['message']?>
+                                    </div>
+                                <?php endIf; ?>
+
                                 <form id="loginForm" method="post" action="<?= ROOT_DIRECTORY . PAGE_URL_LOGIN ?>">
                                     <div class="form-floating mb-3">
                                         <input class="form-control" id="inputEmail" type="email" name="email"

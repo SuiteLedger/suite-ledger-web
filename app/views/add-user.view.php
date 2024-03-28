@@ -1,21 +1,16 @@
 <?php
 $this->view("/includes/header", $data);
 ?>
-
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
-                <h1 class="mt-4">User Accounts</h1>
+                <h1 class="mt-4"><?=$pageTitle?></h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item"><a href="#">User Accounts</a></li>
                     <li class="breadcrumb-item active">Add User Accounts</li>
                 </ol>
                 <div class="card mb-4">
                     <div class="card-body">
-
-                        <?php if(getPageMessage()) : ?>
-                            <div><?=getPageMessage(true)['message']?></div>
-                        <?php endif; ?>
 
                         <form method="post" action="<?= ROOT_DIRECTORY ?>/user/add" id="add-user-form">
                             <div class="form-group mb-3">
@@ -31,17 +26,19 @@ $this->view("/includes/header", $data);
                                 <label for="name">Name:</label>
                                 <input type="text" id="full_name" name="full_name"
                                        class="form-control <?=!empty($errors['full_name']) ? 'border-danger' : '' ?>"
-                                       value="<?=getInputValue('full_name')?>" placeholder="Enter Full Name" required>
-                                <?php if(!empty($errors['full_name'])) : ?>
-                                    <small class="text-danger"><?=$errors['full_name']?></small>
-                                <?php endif; ?>
-
+                                       value="<?=getInputValue('full_name')?>"
+                                       placeholder="Enter Full Name" required>
+                                <?= !empty($errors['full_name']) ?
+                                    "<small class='text-danger'>{$errors['full_name']}</small>" : '' ?>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="email">Email Address:</label>
-                                <input type="email" class="form-control" id="email" name="email"
+                                <input type="email" id="email" name="email"
+                                       class="form-control <?=!empty($errors['email']) ? 'border-danger' : '' ?>"
                                        placeholder="Enter Email Address"
                                        required>
+                                <?= !empty($errors['email']) ?
+                                    "<small class='text-danger'>{$errors['email']}</small>" : '' ?>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="password">Password:</label>

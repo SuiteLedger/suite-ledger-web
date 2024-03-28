@@ -74,7 +74,6 @@ $this->view("/includes/header", $data);
         </div>
     </main>
 
-
     <?php
     $this->view("/includes/footer", $data);
     ?>
