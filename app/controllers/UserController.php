@@ -16,9 +16,13 @@ class UserController extends Controller
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
             if($user->validate($_POST)) {
                 $_POST['created_date'] = date("Y=m-d H:i:s");
+                $_POST['password'] = password_hash($_POST['password'], PASSWORD_BCRYPT);
                 $user->insert($_POST);
-                setPageMessage(MESSAGE_TYPE_SUCCESS, "User profile created successfully.");
+                setPageMessage(MESSAGE_TYPE_SUCCESS,
+                    "User account \"" . $_POST['full_name'] . "\" created successfully.");
                 redirect(PAGE_URL_ADD_USER);
+            } else {
+                setPageMessage(MESSAGE_TYPE_ERROR, "Please correct the errors and resubmit.");
             }
         }
 

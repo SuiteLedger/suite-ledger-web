@@ -5,7 +5,10 @@ class LogOutController extends Controller
 
     public function index()
     {
-        $this->view('login');
+//        session_unset();
+//        session_destroy();
+        Authentication::logout();
+        redirect(PAGE_URL_LOGIN);
     }
 
 }

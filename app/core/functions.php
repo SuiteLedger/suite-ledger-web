@@ -21,7 +21,8 @@ function redirect($link) {
 function setPageMessage($messageType, $message) {
     $_SESSION['pageMessage'] = [
         'messageType' => $messageType,
-        'message' => $message
+        'message' => $message,
+        'cssClass' => getToastMessageCssClass($messageType)
     ];
 }
 
@@ -30,8 +31,23 @@ function getPageMessage($deletePageMessage = false) {
     if(isset($_SESSION['pageMessage'])) {
         $pageMessage = $_SESSION['pageMessage'];
         if($deletePageMessage) {
-            unset($pageMessage);
+            unset($_SESSION['pageMessage']);
         }
     }
     return $pageMessage;
+}
+
+function getToastMessageCssClass($messageType) {
+    switch ($messageType) {
+        case MESSAGE_TYPE_SUCCESS :
+            return 'success';
+        case MESSAGE_TYPE_ERROR:
+            return 'danger';
+        default:
+            return 'info';
+    }
+}
+
+function getLoggedInUser() {
+    return Authentication::getLoggedInUser();
 }

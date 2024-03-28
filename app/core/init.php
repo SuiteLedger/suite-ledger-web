@@ -5,6 +5,7 @@ spl_autoload_register(function ($className) {
 });
 
 require 'config.php';
+require 'Authentication.php';
 require 'functions.php';
 require 'database.php';
 require 'Model.php';
