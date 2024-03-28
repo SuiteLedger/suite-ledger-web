@@ -12,7 +12,12 @@ $this->view("/includes/header", $data);
                 </ol>
                 <div class="card mb-4">
                     <div class="card-body">
-                        <form method="post" action="add-user.php" id="add-user-form">
+
+                        <?php if(getPageMessage()) : ?>
+                            <div><?=getPageMessage(true)['message']?></div>
+                        <?php endif; ?>
+
+                        <form method="post" action="<?= ROOT_DIRECTORY ?>/user/add" id="add-user-form">
                             <div class="form-group mb-3">
                                 <label for="user_type">User Type:</label>
                                 <select class="form-control" id="user_type" name="user_type" required>
@@ -24,8 +29,13 @@ $this->view("/includes/header", $data);
                             </div>
                             <div class="form-group mb-3">
                                 <label for="name">Name:</label>
-                                <input type="text" class="form-control" id="full_name" name="full_name"
-                                       placeholder="Enter Full Name" required>
+                                <input type="text" id="full_name" name="full_name"
+                                       class="form-control <?=!empty($errors['full_name']) ? 'border-danger' : '' ?>"
+                                       value="<?=getInputValue('full_name')?>" placeholder="Enter Full Name" required>
+                                <?php if(!empty($errors['full_name'])) : ?>
+                                    <small class="text-danger"><?=$errors['full_name']?></small>
+                                <?php endif; ?>
+
                             </div>
                             <div class="form-group mb-3">
                                 <label for="email">Email Address:</label>
@@ -63,72 +73,73 @@ $this->view("/includes/header", $data);
             </div>
         </main>
 
-        <script>
-            const form = document.getElementById('add-user-form');
-            const nameInput = document.getElementById('full_name');
-            const emailInput = document.getElementById('email');
-            const passwordInput = document.getElementById('password');
-            const submitButton = document.querySelector('button[type="submit"]');
-            const validationMessage = document.getElementById('validation-message');
-
-            // Function to display validation message
-            function showErrorMessage(message) {
-                validationMessage.textContent = message;
-                validationMessage.style.color = 'red';
-                submitButton.disabled = true; // Disable submit button on error
-            }
-
-            // Function to clear validation message
-            function clearErrorMessage() {
-                validationMessage.textContent = '';
-                validationMessage.style.color = '';
-                submitButton.disabled = false; // Enable submit button on successful validation
-            }
-
-            // Event listener for form submission
-            form.addEventListener('submit', (event) => {
-                event.preventDefault(); // Prevent default form submission
-
-                let isValid = true;
-
-                // Name validation - check if empty and only alphabets and spaces
-                if (nameInput.value === '') {
-                    showErrorMessage('Please enter your name.');
-                    isValid = false;
-                } else {
-                    const regex = /^[a-zA-Z\s]*$/;
-                    if (!regex.test(nameInput.value)) {
-                        showErrorMessage('Please enter only alphabets for your name.');
-                        isValid = false;
-                    } else {
-                        clearErrorMessage(); // Clear any previous name error message
-                    }
-                }
-
-                // Email validation - check format and emptiness
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(emailInput.value) || emailInput.value === '') {
-                    showErrorMessage('Please enter a valid email address.');
-                    isValid = false;
-                } else {
-                    clearErrorMessage(); // Clear any previous email error message
-                }
-
-                // Password validation - check minimum length (adjust as needed)
-                if (passwordInput.value.length < 6) {
-                    showErrorMessage('Password must be at least 6 characters long.');
-                    isValid = false;
-                } else {
-                    clearErrorMessage(); // Clear any previous password error message
-                }
-
-                // Submit form if all fields are valid
-                if (isValid) {
-                    form.submit(); // Submit the form after successful validation
-                }
-            });
-        </script>
+<!--        <script>-->
+<!--            const form = document.getElementById('add-user-form');-->
+<!--            const nameInput = document.getElementById('full_name');-->
+<!--            const emailInput = document.getElementById('email');-->
+<!--            const passwordInput = document.getElementById('password');-->
+<!--            const submitButton = document.querySelector('button[type="submit"]');-->
+<!--            const validationMessage = document.getElementById('validation-message');-->
+<!---->
+<!--            // Function to display validation message-->
+<!--            function showErrorMessage(message) {-->
+<!--                validationMessage.textContent = message;-->
+<!--                validationMessage.style.color = 'red';-->
+<!--                submitButton.disabled = true; // Disable submit button on error-->
+<!--            }-->
+<!---->
+<!--            // Function to clear validation message-->
+<!--            function clearErrorMessage() {-->
+<!--                validationMessage.textContent = '';-->
+<!--                validationMessage.style.color = '';-->
+<!--                submitButton.disabled = false; // Enable submit button on successful validation-->
+<!--            }-->
+<!---->
+<!--            // Event listener for form submission-->
+<!--            form.addEventListener('submit', (event) => {-->
+<!--                event.preventDefault(); // Prevent default form submission-->
+<!---->
+<!--                let isValid = true;-->
+<!---->
+<!--                // Name validation - check if empty and only alphabets and spaces-->
+<!--                if (nameInput.value === '') {-->
+<!--                    showErrorMessage('Please enter your name.');-->
+<!--                    //isValid = false;-->
+<!--                } else {-->
+<!--                    const regex = /^[a-zA-Z\s]*$/;-->
+<!--                    if (!regex.test(nameInput.value)) {-->
+<!--                        showErrorMessage('Please enter only alphabets for your name.');-->
+<!--                        isValid = false;-->
+<!--                    } else {-->
+<!--                        clearErrorMessage(); // Clear any previous name error message-->
+<!--                    }-->
+<!--                }-->
+<!---->
+<!--                // Email validation - check format and emptiness-->
+<!--                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;-->
+<!--                if (!emailRegex.test(emailInput.value) || emailInput.value === '') {-->
+<!--                    showErrorMessage('Please enter a valid email address.');-->
+<!--                    isValid = false;-->
+<!--                } else {-->
+<!--                    clearErrorMessage(); // Clear any previous email error message-->
+<!--                }-->
+<!---->
+<!--                // Password validation - check minimum length (adjust as needed)-->
+<!--                if (passwordInput.value.length < 6) {-->
+<!--                    showErrorMessage('Password must be at least 6 characters long.');-->
+<!--                    isValid = false;-->
+<!--                } else {-->
+<!--                    clearErrorMessage(); // Clear any previous password error message-->
+<!--                }-->
+<!---->
+<!--                // Submit form if all fields are valid-->
+<!--                if (isValid) {-->
+<!--                    form.submit(); // Submit the form after successful validation-->
+<!--                }-->
+<!--            });-->
+<!--        </script>-->
 
 <?php
 $this->view("/includes/footer", $data);
 ?>
+
