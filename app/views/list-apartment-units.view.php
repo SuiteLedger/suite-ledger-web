@@ -7,7 +7,7 @@ $this->view("/includes/header", $data);
         <div class="container-fluid px-4">
             <h1 class="mt-4">Apartment Units</h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item"><a href="#">Apartment</a></li>
+                <li class="breadcrumb-item">Apartment</li>
                 <li class="breadcrumb-item active">List Apartment Units</li>
             </ol>
             <div class="card mb-4">
@@ -15,55 +15,57 @@ $this->view("/includes/header", $data);
                     <table id="datatablesSimple">
                         <thead>
                         <tr>
-                            <th>Floor Number</th>
-                            <th>Building</th>
+                            <!-- <th>Floor Number</th>-->
+                            <!-- <th>Building</th>-->
                             <th>Unit Number</th>
-                            <th>Unit Name</th>
+                            <!-- <th>Unit Name</th>-->
                             <th>Monthly Fee</th>
                             <th>Owner Name</th>
                             <th>Owner Contact (Primary)</th>
                             <th>Owner Contact (Secondary)</th>
                             <th>Owner Email</th>
-                            <th>Square Footage</th>
-                            <th>Available</th>
+                            <!-- <th>Square Footage</th>-->
+                            <!-- <th>Available</th>-->
                             <th>Action</th>
                         </thead>
                         <tfoot>
                         <tr>
-                            <th>Floor Number</th>
-                            <th>Building</th>
+                            <!-- <th>Floor Number</th>-->
+                            <!-- <th>Building</th>-->
                             <th>Unit Number</th>
-                            <th>Unit Name</th>
+                            <!-- <th>Unit Name</th>-->
                             <th>Monthly Fee</th>
                             <th>Owner Name</th>
                             <th>Owner Contact (Primary)</th>
                             <th>Owner Contact (Secondary)</th>
                             <th>Owner Email</th>
-                            <th>Square Footage</th>
-                            <th>Available</th>
+                            <!-- <th>Square Footage</th>-->
+                            <!-- <th>Available</th>-->
                             <th>Action</th>
                         </tr>
                         </tfoot>
                         <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Building A</td>
-                            <td>101</td>
-                            <td>Studio Apartment</td>
-                            <td>$1,200</td>
-                            <td>Jane Doe</td>
-                            <td>(555) 555-1234</td>
-                            <td></td>
-                            <td>jane.doe@email.com</td>
-                            <td>500</td>
-                            <td>Yes</td>
-                            <td>
-                                <button type="button" href="edit-apartment-unit.php"
-                                        class="btn btn-primary btn-sm edit-btn-units">Edit
-                                </button>
-                                <button type="button" class="btn btn-danger btn-sm delete-btn-units">Delete</button>
-                            </td>
-                        </tr>
+
+                        <?php foreach ($apartmentUnits as $apartmentUnit) { ?>
+                            <tr>
+                                <td><?= $apartmentUnit->unit_no ?></td>
+                                <td><?= $apartmentUnit->monthly_fee ?></td>
+                                <td><?= $apartmentUnit->owner_name ?></td>
+                                <td><?= $apartmentUnit->owner_contact_no_1 ?></td>
+                                <td><?= $apartmentUnit->owner_contact_no_2 ?></td>
+                                <td><?= $apartmentUnit->owner_email ?></td>
+                                <td>
+                                    <a type="button" class="btn btn-primary btn-sm edit-btn-units"
+                                            href="<?= ROOT_DIRECTORY . PAGE_URL_EDIT_APARTMENT_UNIT
+                                            . "/" . $apartmentUnit->id ?>">Edit
+                                    </a>
+                                    <button type="button" class="btn btn-danger btn-sm delete-btn-units"
+                                            onclick="deleteItem(<?= $apartmentUnit->id ?>)">Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        <?php } ?>
+
                         </tbody>
                     </table>
                 </div>
@@ -72,26 +74,30 @@ $this->view("/includes/header", $data);
     </main>
 
     <script>
-        const editButtons = document.querySelectorAll('.edit-btn-units');
-        const deleteButtons = document.querySelectorAll('.delete-btn-units');
+        var deleteUrl = '<?=ROOT_DIRECTORY . PAGE_URL_DELETE_APARTMENT_UNIT . "/" ?>';
 
-        editButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                window.location.href = "edit-apartment-unit.php"; // Replace with actual edit URL
-            });
-        });
+        function deleteItem(id) {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    deleteUrl += id;
+                    fetch(deleteUrl, {
+                        method: 'POST'
+                    }).then(response => {
+                        location.reload();
+                    });
 
-        deleteButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const confirmation = confirm("Are you sure you want to delete this apartment unit?");
-                if (confirmation) {
-                    // Add logic to handle deletion (e.g., redirect to delete script)
-                    console.log("Apartment Unit deleted!"); // Replace with actual deletion logic
-                } else {
-                    console.log("Deletion cancelled.");
                 }
             });
-        });
+        }
+
     </script>
 
     <?php
