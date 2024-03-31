@@ -5,12 +5,18 @@ class User extends Model {
     public $errors = [];
     protected $table = "user";
     protected $allowedColumns = [
-        'full_name',
         'email',
-        'password'
+        'password',
+        'full_name',
+        'role',
+        'user_type',
+        'apartment_complex',
+        'status',
+        'created_by',
+        'created_date'
         ];
 
-    public function validate($data) {
+    public function validate($data, $editItem = false) {
 
         $this->errors = [];
 
@@ -20,8 +26,19 @@ class User extends Model {
 
         if(!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
             $this->errors['email'] = "Please enter a valid email.";
-        } else if ($this->selectOne(['email' => $data['email']]) ) {
-            $this->errors['email'] = "Email already exists.";
+        }
+
+        if(!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+            $this->errors['email'] = "Please enter a valid email.";
+        } else {
+            $result = $this->selectOne(['email' => $data['email']]);
+            if($result) {
+                if(!$editItem || $data["id"] != $result->id) {
+                    $this->errors['email'] = "Email already exists.";
+                }
+
+            }
+
         }
 
         if(empty($this->errors)) {

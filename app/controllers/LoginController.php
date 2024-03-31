@@ -14,10 +14,18 @@ class LoginController extends Controller
                 'email' => $_POST['email']
             ]);
 
-//            if($row && $row->password === $_POST['password']) {
             if(password_verify($_POST['password'], $row->password)) {
                 unset($row->password);
                 Authentication::setLoggedInUser($row);
+
+                $rolePermissionModel = new RolePermissionModel();
+                $userPermissionsResult = $rolePermissionModel->selectAll(["role"=>$row->role]);
+                $userPermissions = [];
+                foreach($userPermissionsResult as $userPermission) {
+                    $userPermissions[] = $userPermission->permission;
+                }
+                Authentication::setUserPermissions($userPermissions);
+
                 redirect(PAGE_URL_DASHBOARD);
                 die;
             }
