@@ -5,25 +5,25 @@ $this->view("/includes/header", $data);
     <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
-            <h1 class="mt-4">User Roles</h1>
+            <h1 class="mt-4"><?=$pageTitle?></h1>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item"><a href="<?= ROOT_DIRECTORY ?>/userRole/list">User Roles</a></li>
-                <li class="breadcrumb-item active">Add a User Role</li>
+                <li class="breadcrumb-item active"><?=$pageTitle?></li>
             </ol>
             <div class="card mb-4">
                 <div class="card-body">
-                    <form method="post" action="<?= ROOT_DIRECTORY ?>/userRole/add" id="add-user-role-form">
+                    <form method="post" action="<?= ROOT_DIRECTORY . $pageUrl ?>" id="add-user-role-form">
+                        <input type="hidden" name="id" value="<?=getInputValue('id')?>">
 
                         <div class="form-group mb-3">
                             <label for="user_type">User Type:</label>
                             <select class="form-select" id="user_type" name="user_type">
-                                <?php foreach (getUserTypes() as $userType) { ?>
-                                    <option value="<?= $userType->type ?>"
-                                        <?= getInputValue('user_type') == $userType->type ? 'selected' : '' ?>
-                                    >
-                                        <?= $userType->description ?>
-                                    </option>
-                                <?php } ?>
+                                <?php
+                                foreach (getUserTypes() as $userType) {
+                                    displaySelectOptions($userType->getId(),
+                                        $userType->getName(), getInputValue('user_type'));
+                                }
+                                ?>
                             </select>
                         </div>
 

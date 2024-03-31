@@ -2,10 +2,10 @@
 $this->view("/includes/header", $data);
 ?>
 
-<div id="layoutSidenav_content">
+    <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
-            <h1 class="mt-4">User Roles</h1>
+            <h1 class="mt-4"><?= $pageTitle ?></h1>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item"><a href="#">User Roles</a></li>
                 <li class="breadcrumb-item active">List User Roles</li>
@@ -14,48 +14,42 @@ $this->view("/includes/header", $data);
                 <div class="card-body">
                     <table id="datatablesSimple">
                         <thead>
-                            <tr>
-                                <th>Role</th>
-                                <th>User Type</th>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Created By</th>
-                                <th>Created Date</th>
-                                <th>Updated By</th>
-                                <th>Updated Date</th>
-                                <th>Action</th>
-                            </tr>
+                        <tr>
+                            <th>Role</th>
+                            <th>User Type</th>
+                            <th>Description</th>
+                            <th>Action</th>
+                        </tr>
                         </thead>
                         <tfoot>
-                            <tr>
-                                <th>Role</th>
-                                <th>User Type</th>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Created By</th>
-                                <th>Created Date</th>
-                                <th>Updated By</th>
-                                <th>Updated Date</th>
-                                <th>Action</th>
-                            </tr>
+                        <tr>
+                            <th>Role</th>
+                            <th>User Type</th>
+                            <th>Description</th>
+                            <th>Action</th>
+                        </tr>
                         </tfoot>
                         <tbody>
+
+                        <?php foreach ($userRoles as $userRole) { ?>
                             <tr>
-                                <th>Administrator</th>
-                                <th>Property Manager</th>
-                                <th>Fazarath</th>
-                                <th>Defines a specific set of permissions and responsibilities within a system.</th>
-                                <th>Naveen</th>
-                                <th>3/14/2024</th>
-                                <th>Rifkhan</th>
-                                <th>3/27/2024</th>
+                                <th><?= $userRole->name ?></th>
+                                <th><?= getTypeNameById(getUserTypes(), $userRole->user_type) ?></th>
+                                <th><?= empty($userRole->description) ? 'N/A' : $userRole->description ?></th>
                                 <td>
-                                    <button type="button" href="edit-user-role.php"
-                                        class="btn btn-primary btn-sm edit-btn">Edit
+                                    <a type="button" class="btn btn-primary btn-sm edit-btn"
+                                       href="<?= ROOT_DIRECTORY . PAGE_URL_EDIT_USER_ROLE . "/" . $userRole->id ?>"
+                                    >
+                                        Edit
+                                    </a>
+                                    <button type="button" class="btn btn-danger btn-sm delete-btn"
+                                            onclick="deleteRole(<?= $userRole->id ?>)">Delete
                                     </button>
-                                    <button type="button" class="btn btn-danger btn-sm delete-btn">Delete</button>
                                 </td>
                             </tr>
+
+                        <?php } ?>
+
                         </tbody>
                     </table>
                 </div>
@@ -64,6 +58,36 @@ $this->view("/includes/header", $data);
     </main>
 
     <script>
+
+        // function delete(id) {
+        //     alert(id);
+        // }
+
+        var deleteUrl = '<?=ROOT_DIRECTORY . PAGE_URL_DELETE_USER_ROLE . "/" ?>';
+
+        function deleteRole(id) {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    deleteUrl += id;
+                    fetch(deleteUrl, {
+                        method: 'POST'
+                    }).then(response => {
+                        location.reload();
+
+                    });
+
+                }
+            });
+        }
+
         const editButtons = document.querySelectorAll('.edit-btn');
         const deleteButtons = document.querySelectorAll('.delete-btn');
 
@@ -73,19 +97,19 @@ $this->view("/includes/header", $data);
             });
         });
 
-        deleteButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const confirmation = confirm("Are you sure you want to delete this user account?");
-                if (confirmation) {
-                    // Add logic to handle deletion (e.g., redirect to delete script)
-                    console.log("User Role deleted!"); // Replace with actual deletion logic
-                } else {
-                    console.log("Deletion cancelled.");
-                }
-            });
-        });
+        // deleteButtons.forEach(button => {
+        //     button.addEventListener('click', () => {
+        //         const confirmation = confirm("Are you sure you want to delete this user account?");
+        //         if (confirmation) {
+        //             // Add logic to handle deletion (e.g., redirect to delete script)
+        //             console.log("User Role deleted!"); // Replace with actual deletion logic
+        //         } else {
+        //             console.log("Deletion cancelled.");
+        //         }
+        //     });
+        // });
     </script>
 
-    <?php
-    $this->view("/includes/footer", $data);
-    ?>
+<?php
+$this->view("/includes/footer", $data);
+?>

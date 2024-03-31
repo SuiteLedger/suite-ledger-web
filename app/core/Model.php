@@ -23,14 +23,45 @@ class Model extends Database
 
     }
 
-    public function selectAll($data) {
+    public function update($id, $data) {
+
+        foreach ($data as $key => $value) {
+            if(!in_array($key, $this->allowedColumns)) {
+                unset($data[$key]);
+            }
+        }
+
         $keys = array_keys($data);
 
-        $query = "select * from " . $this->table . " where ";
+        $query = "UPDATE " . $this->table . " set ";
+
         foreach ($keys as $key) {
-            $query .= $key . "=:" . $key . " && ";
+            $query .= $key . "=:" . $key . ",";
         }
-        $query = trim($query, "&& ");
+        $query = trim($query,',');
+        $query .= " WHERE id=:id";
+
+        $data['id'] = $id;
+        return $this->query($query, $data);
+
+    }
+
+    public function delete($id) {
+
+    }
+
+    public function selectAll($data = []) {
+        $keys = array_keys($data);
+
+        $query = "select * from " . $this->table;
+
+        if(count($keys) > 0) {
+            $query .= " where ";
+            foreach ($keys as $key) {
+                $query .= $key . "=:" . $key . " && ";
+            }
+            $query = trim($query, "&& ");
+        }
 
         $result = $this->query($query, $data);
 

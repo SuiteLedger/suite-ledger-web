@@ -14,7 +14,7 @@ class User extends Model {
         'status',
         'created_by',
         'created_date'
-        ];
+    ];
 
     public function validate($data, $editItem = false) {
 

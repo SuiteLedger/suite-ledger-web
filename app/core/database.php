@@ -11,14 +11,6 @@ class Database
 
     public function query($query, $data = [], $fetchType = 'object')
     {
-
-//        if (str_starts_with($query, 'UPDATE')) {
-//            echo $query;
-//            show($data);
-//            die;
-//        }
-
-
         $connection = $this->connect();
         $statement = $connection->prepare($query);
         if ($statement) {
