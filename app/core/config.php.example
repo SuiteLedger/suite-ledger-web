@@ -58,4 +58,8 @@ if ($_SERVER['SERVER_NAME'] == 'localhost') {
     define('DBPASSWORD', '');
     define('DBDRIVER', 'mysql');
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 0865aef (user roles backend implementation)
