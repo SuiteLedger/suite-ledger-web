@@ -50,17 +50,24 @@ class Model extends Database
 
     }
 
-    public function selectAll($data = []) {
+    public function selectAll($data = [], $excludeDeletedItems = false) {
         $keys = array_keys($data);
 
         $query = "select * from " . $this->table;
 
-        if(count($keys) > 0) {
+        if(count($keys) > 0 || $excludeDeletedItems) {
             $query .= " where ";
+        }
+
+        if(count($keys) > 0) {
             foreach ($keys as $key) {
                 $query .= $key . "=:" . $key . " && ";
             }
             $query = trim($query, "&& ");
+        }
+
+        if($excludeDeletedItems) {
+            $query .= " status != " . STATUS_DELETED;
         }
 
         $result = $this->query($query, $data);

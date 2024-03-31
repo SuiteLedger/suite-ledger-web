@@ -3,12 +3,18 @@
 const APP_NAME = 'SuiteLedger';
 
 // Page URLs
+const PAGE_URL_ADD_APARTMENT_COMPLEX = '/apartmentComplex/add';
 const PAGE_URL_ADD_USER = '/user/add';
 const PAGE_URL_ADD_USER_ROLE = '/userRole/add';
 const PAGE_URL_DASHBOARD = '/dashboard';
+
+const PAGE_URL_DELETE_APARTMENT_COMPLEX = '/apartmentComplex/delete';
 const PAGE_URL_DELETE_USER_ROLE = '/userRole/delete';
+
+const PAGE_URL_EDIT_APARTMENT_COMPLEX = '/apartmentComplex/edit';
 const PAGE_URL_EDIT_USER = '/user/edit';
 const PAGE_URL_EDIT_USER_ROLE = '/userRole/edit';
+const PAGE_URL_LIST_APARTMENT_COMPLEX = '/apartmentComplex/list';
 const PAGE_URL_LIST_USER_ROLE = '/userRole/list';
 const PAGE_URL_LOGIN = '/login';
 

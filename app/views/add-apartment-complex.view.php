@@ -5,41 +5,63 @@ $this->view("/includes/header", $data);
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
-            <h1 class="mt-4">Apartment Complexes</h1>
+            <h1 class="mt-4"><?= $pageTitle ?></h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item"><a href="#">Apartment</a></li>
-                <li class="breadcrumb-item active">Add an Apartment Complex</li>
+                <li class="breadcrumb-item">
+                    <a href="<?= ROOT_DIRECTORY . PAGE_URL_LIST_APARTMENT_COMPLEX ?>">Apartments</a>
+                </li>
+                <li class="breadcrumb-item active"><?= $pageTitle ?></li>
             </ol>
             <div class="card mb-4">
                 <div class="card-body">
-                    <form method="post" action="add-apartment-complex.php">
-                        <div class="form-group mb-3"><label for="complex_name">Complex Name:</label>
-                            <input type="text" class="form-control" id="complex_name" name="complex_name"
-                                   placeholder="Enter Complex Name" required>
+                    <form method="post" action="<?= ROOT_DIRECTORY . $pageUrl ?>">
+                        <input type="hidden" name="id" value="<?=getInputValue('id')?>">
+                        <div class="form-group mb-3"><label for="name">Complex Name:</label>
+                            <input type="text" class="form-control" id="complex_name" name="name"
+                                   value="<?=getInputValue('name')?>"
+                                   placeholder="Enter Complex Name"  required>
                         </div>
                         <div class="form-group mb-3"><label for="address">Address:</label>
                             <input type="text" class="form-control" id="address" name="address"
+                                   value="<?=getInputValue('address')?>"
                                    placeholder="Enter Complex Address" required>
                         </div>
                         <div class="form-group mb-3"><label for="contact_person">Contact Person:</label>
                             <input type="text" class="form-control" id="contact_person" name="contact_person"
+                                   value="<?=getInputValue('contact_person')?>"
                                    placeholder="Enter Contact Person Name" required>
                         </div>
                         <div class="form-group mb-3"><label for="contact_number">Contact Number:</label>
                             <input type="tel" class="form-control" id="contact_number" name="contact_number"
+                                   value="<?=getInputValue('contact_number')?>"
                                    placeholder="Enter Contact Number" required>
                         </div>
                         <div class="form-group mb-3"><label for="email">Email:</label>
                             <input type="email" class="form-control" id="email" name="email"
+                                   value="<?=getInputValue('email')?>"
                                    placeholder="Enter Email Address" required>
                         </div>
                         <div class="form-group mb-3"><label for="no_of_buildings">Number of Buildings:</label>
                             <input type="number" class="form-control" min="1" id="no_of_buildings"
+                                   value="<?=getInputValue('no_of_buildings')?>"
                                    name="no_of_buildings" placeholder="Enter Number of Buildings" required>
                         </div>
                         <div class="form-group mb-3"><label for="no_of_units">Number of Units:</label>
                             <input type="number" class="form-control" min="1" id="no_of_units" name="no_of_units"
+                                   value="<?=getInputValue('no_of_units')?>"
                                    placeholder="Enter Number of Units" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="apartment_complex">Status:</label>
+                            <select class="form-control" id="status" name="status" required>
+                                <?php
+                                foreach (getItemStatuses() as $itemStatus) {
+                                    displaySelectOptions($itemStatus->getId(),
+                                        $itemStatus->getName(),
+                                        getInputValue('status'));
+                                }
+                                ?>
+                            </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
