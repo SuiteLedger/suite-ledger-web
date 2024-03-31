@@ -23,6 +23,10 @@ class Database
                 }
                 $result = $statement->fetchAll($pdoFetchType);
 
+                if($connection->lastInsertId() > 0) {
+                    return $connection->lastInsertId();
+                }
+
                 if (is_array($result) && count($result) > 0) {
                     return $result;
                 }
