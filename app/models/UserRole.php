@@ -7,15 +7,14 @@ class UserRole extends Model {
     protected $allowedColumns = [
         'user_type',
         'name',
-        'description',
-        'status'
+        'description'
         ];
 
     public function validate($data, $userPermissions) {
 
         $this->errors = [];
 
-        if(empty($data['name']) || strlen($data['name']) < 1) {
+        if(empty($data['name']) || strlen($data['name']) < 5) {
             $this->errors['name'] = "Please enter a valid name for the role.";
         }
 

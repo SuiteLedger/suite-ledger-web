@@ -9,11 +9,5 @@ class RolePermissionModel extends Model {
         'permission',
         ];
 
-    public function delete($id) {
-        $query = "DELETE FROM " . $this->table . " WHERE role=:id";
-        $this->query($query, ['id'=>$id]);
-        return true;
-    }
-
 
 }
