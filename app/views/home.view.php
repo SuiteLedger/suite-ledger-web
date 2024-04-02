@@ -46,7 +46,6 @@
                     payments, utilities, and unexpected maintenance needs, keeping track of finances can feel
                     overwhelming. That's why we created SuiteLedger, a convenient web app designed to simplify apartment
                     fee and maintenance management for both residents and property managers.</p>
-
             </div>
         </div>
     </div>
@@ -60,8 +59,11 @@
                 <p class="lead">We are passionate about making apartment living more convenient and hassle-free by
                     offering the below services in our app;</p>
                 <ul>
-                    <li>Feature 1</li>
-                    <li>Feature 2</li>
+                    <li>- Enable Property managers' to efficiently Track and manage maintenance fees from one dashboard 
+- Transform manual bookkeeping by automating invoicing, payment receipts, balance statements, and payment histories
+- Grant landlords complete control to access timely, precise, and transparent financial reports.
+- Email-based tenant self-service for uploading deposit slips. 
+- Smart notifications and reminders for landlords.</li>
                 </ul>
             </div>
         </div>
