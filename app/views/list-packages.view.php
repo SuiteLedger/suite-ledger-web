@@ -40,9 +40,10 @@ $this->view("/includes/header", $data);
                         <tbody>
                             <tr>
                                 <td>John Smith</td>
-                                <td>$200</td>
+                                <td>LKR 200</td>
                                 <td>5</td>
                                 <td>100</td>
+                                <td>Active</td>
                                 <td>Rifkhan</td>
                                 <td>Naween</td>
                                 <td>
