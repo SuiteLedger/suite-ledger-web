@@ -1,15 +1,6 @@
 <?php
 
-class UserType extends Model
+class UserType extends Type
 {
-
-    public $type;
-    public $description;
-
-    public function __construct($type, $description) {
-        $this->type = $type;
-        $this->description = $description;
-    }
-
 
 }

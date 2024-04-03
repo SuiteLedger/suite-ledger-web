@@ -2,7 +2,7 @@
 $this->view("/includes/header", $data);
 ?>
 
-<div id="layoutSidenav_content">
+    <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
             <h1 class="mt-4">User Accounts</h1>
@@ -42,7 +42,7 @@ $this->view("/includes/header", $data);
                             <td><?= getTypeNameById(getUserStatuses(), $user->status) ?></td>
                             <td>
                                 <a type="button" class="btn btn-primary btn-sm edit-btn"
-                                        href="<?= ROOT_DIRECTORY . PAGE_URL_EDIT_USER . "/" . $user->id ?>"
+                                   href="<?= ROOT_DIRECTORY . PAGE_URL_EDIT_USER . "/" . $user->id ?>"
                                 >
                                     Edit
                                 </a>
@@ -57,6 +57,7 @@ $this->view("/includes/header", $data);
         </div>
     </main>
 
-    <?php
-    $this->view("/includes/footer", $data);
-    ?>
+<?php
+$this->view("/includes/footer", $data);
+?>
+

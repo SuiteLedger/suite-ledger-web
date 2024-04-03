@@ -1,7 +1,7 @@
 <?php
 $this->view("/includes/header", $data);
 ?>
-<div id="layoutSidenav_content">
+    <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
             <h1 class="mt-4"><?= $pageTitle ?></h1>
@@ -154,7 +154,7 @@ $this->view("/includes/header", $data);
     <!--            });-->
     <!--        </script>-->
 
-    <?php
-    $this->view("/includes/footer", $data);
-    ?>
+<?php
+$this->view("/includes/footer", $data);
+?>
 
