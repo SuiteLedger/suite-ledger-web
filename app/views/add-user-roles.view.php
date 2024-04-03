@@ -2,36 +2,64 @@
 $this->view("/includes/header", $data);
 ?>
 
-<div id="layoutSidenav_content">
+    <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
             <h1 class="mt-4">User Roles</h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item"><a href="#">User Roles</a></li>
+                <li class="breadcrumb-item"><a href="<?= ROOT_DIRECTORY ?>/userRole/list">User Roles</a></li>
                 <li class="breadcrumb-item active">Add a User Role</li>
             </ol>
             <div class="card mb-4">
                 <div class="card-body">
-                    <form method="post" action="add-user-role.php" id="add-user-role-form">
-                        <div class="form-group mb-3">
-                            <label for="role">Role:</label>
-                            <input type="text" class="form-control" id="role" name="role" placeholder="Enter Role"
-                                required>
-                        </div>
+                    <form method="post" action="<?= ROOT_DIRECTORY ?>/userRole/add" id="add-user-role-form">
+
                         <div class="form-group mb-3">
                             <label for="user_type">User Type:</label>
-                            <input type="text" class="form-control" id="user_type" name="user_type"
-                                placeholder="Enter User Type" required>
+                            <select class="form-select" id="user_type" name="user_type">
+                                <?php foreach (getUserTypes() as $userType) { ?>
+                                    <option value="<?= $userType->type ?>"
+                                        <?= getInputValue('user_type') == $userType->type ? 'selected' : '' ?>
+                                    >
+                                        <?= $userType->description ?>
+                                    </option>
+                                <?php } ?>
+                            </select>
                         </div>
+
                         <div class="form-group mb-3">
-                            <label for="name">Name:</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name"
-                                required>
+                            <label for="role">Role Name:</label>
+                            <input type="text" id="role" name="name" placeholder="Enter Role Name"
+                                   class="form-control <?= !empty($errors['name']) ? 'border-danger' : '' ?>"
+                                   value="<?= getInputValue('name') ?>"
+                                   required>
+                            <?= !empty($errors['name']) ?
+                                "<small class='text-danger'>{$errors['name']}</small>" : '' ?>
                         </div>
+
                         <div class="form-group mb-3">
                             <label for="description">Description:</label>
-                            <textarea class="form-control" id="description" name="description"
-                                placeholder="Enter Description" required></textarea>
+                            <input type="text" class="form-control" id="description" name="description"
+                                   value="<?= getInputValue('description') ?>"
+                                   placeholder="Enter Description" required>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="description">Permissions:</label>
+
+                            <?php foreach ($permissions as $permission) { ?>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox"
+                                           value="<?= $permission->permission ?>"
+                                        <?= getInputValue('permissions')
+                                        && in_array($permission->permission, getInputValue('permissions'))
+                                            ? ' checked ' : '' ?>
+                                           name="permissions[]">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        <?= $permission->name ?>
+                                    </label>
+                                </div>
+                            <?php } ?>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
@@ -65,6 +93,6 @@ $this->view("/includes/header", $data);
     </script>
 
 
-    <?php
-    $this->view("/includes/footer", $data);
-    ?>
+<?php
+$this->view("/includes/footer", $data);
+?>

@@ -19,11 +19,11 @@ class Model extends Database
         $query = "insert into " . $this->table;
         $query .= " (" . implode(",", $keys) . ") values (:" . implode(",:", $keys) . ")";
 
-        $this->query($query, $data);
+        return $this->query($query, $data);
 
     }
 
-    public function select($data) {
+    public function selectAll($data) {
         $keys = array_keys($data);
 
         $query = "select * from " . $this->table . " where ";

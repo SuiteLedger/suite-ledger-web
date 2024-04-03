@@ -51,3 +51,10 @@ function getToastMessageCssClass($messageType) {
 function getLoggedInUser() {
     return Authentication::getLoggedInUser();
 }
+
+function getUserTypes() {
+    return array (
+        new UserType('ENTITY', "Entity"),
+        new UserType('CLIENT', "Client")
+    );
+}

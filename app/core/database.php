@@ -11,6 +11,14 @@ class Database
 
     public function query($query, $data = [], $fetchType = 'object')
     {
+
+//        if (str_starts_with($query, 'UPDATE')) {
+//            echo $query;
+//            show($data);
+//            die;
+//        }
+
+
         $connection = $this->connect();
         $statement = $connection->prepare($query);
         if ($statement) {
@@ -22,6 +30,10 @@ class Database
                     $pdoFetchType = PDO::FETCH_ASSOC;
                 }
                 $result = $statement->fetchAll($pdoFetchType);
+
+                if($connection->lastInsertId() > 0) {
+                    return $connection->lastInsertId();
+                }
 
                 if (is_array($result) && count($result) > 0) {
                     return $result;
