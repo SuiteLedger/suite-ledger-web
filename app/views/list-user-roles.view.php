@@ -5,10 +5,10 @@ $this->view("/includes/header", $data);
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
-            <h1 class="mt-4">User Accounts</h1>
+            <h1 class="mt-4">User Roles</h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item"><a href="#">User Accounts</a></li>
-                <li class="breadcrumb-item active">Manage Roles</li>
+                <li class="breadcrumb-item"><a href="#">User Roles</a></li>
+                <li class="breadcrumb-item active">List User Roles</li>
             </ol>
             <div class="card mb-4">
                 <div class="card-body">
@@ -23,6 +23,7 @@ $this->view("/includes/header", $data);
                                 <th>Created Date</th>
                                 <th>Updated By</th>
                                 <th>Updated Date</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tfoot>
@@ -35,11 +36,12 @@ $this->view("/includes/header", $data);
                                 <th>Created Date</th>
                                 <th>Updated By</th>
                                 <th>Updated Date</th>
+                                <th>Action</th>
                             </tr>
                         </tfoot>
                         <tbody>
                             <tr>
-                            <th>Administrator</th>
+                                <th>Administrator</th>
                                 <th>Property Manager</th>
                                 <th>Fazarath</th>
                                 <th>Defines a specific set of permissions and responsibilities within a system.</th>
