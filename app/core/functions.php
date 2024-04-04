@@ -50,3 +50,8 @@ function getLoggedInUser()
 {
     return Authentication::getLoggedInUser();
 }
+
+function getCurrentTime() {
+    date_default_timezone_set('Asia/Colombo');
+    return date('Y-m-d H:i:s');
+}
