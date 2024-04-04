@@ -88,8 +88,9 @@
                         <nav class="sb-sidenav-menu-nested nav">
                             <a class="nav-link" href="<?= ROOT_DIRECTORY ?>/apartmentUnit/add">
                                 Add Apartment Units</a>
-                            <a class="nav-link" href="<?= ROOT_DIRECTORY ?>/apartmentUnit/list">
+                            <a class="nav-link" href="<?= ROOT_DIRECTORY ?>/apartmentUnit/list/1">
                                 List Apartment Units</a>
+                            <!-- TODO: Replace above with actual apartment complex number -->
                         </nav>
                     </div>
                     <div class="sb-sidenav-menu-heading">Payments & Services</div>

@@ -64,6 +64,11 @@ class Model extends Database
                 $query .= $key . "=:" . $key . " && ";
             }
             $query = trim($query, "&& ");
+
+            if($excludeDeletedItems) {
+                $query .= " AND ";
+            }
+
         }
 
         if($excludeDeletedItems) {
