@@ -2,7 +2,7 @@
 $this->view("/includes/header", $data);
 ?>
 
-    <div id="layoutSidenav_content">
+<div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
             <h1 class="mt-4">User Accounts</h1>
@@ -32,22 +32,23 @@ $this->view("/includes/header", $data);
                         </tr>
                         </tfoot>
                         <tbody>
-                        <tr>
 
-                            <?php foreach ($users as $user) { ?>
 
-                            <td><?=$user->full_name?></td>
-                            <td><?=$user->email?></td>
-                            <td><?= getTypeNameById(getUserTypes(), $user->user_type) ?></td>
-                            <td><?= getTypeNameById(getUserStatuses(), $user->status) ?></td>
-                            <td>
-                                <a type="button" class="btn btn-primary btn-sm edit-btn"
-                                   href="<?= ROOT_DIRECTORY . PAGE_URL_EDIT_USER . "/" . $user->id ?>"
-                                >
-                                    Edit
-                                </a>
-                            </td>
-                        </tr>
+                        <?php foreach ($users as $user) { ?>
+                            <tr>
+
+                                <td><?= $user->full_name ?></td>
+                                <td><?= $user->email ?></td>
+                                <td><?= getTypeNameById(getUserTypes(), $user->user_type) ?></td>
+                                <td><?= getTypeNameById(getUserStatuses(), $user->status) ?></td>
+                                <td>
+                                    <a type="button" class="btn btn-primary btn-sm edit-btn"
+                                       href="<?= ROOT_DIRECTORY . PAGE_URL_EDIT_USER . "/" . $user->id ?>"
+                                    >
+                                        Edit
+                                    </a>
+                                </td>
+                            </tr>
                         <?php } ?>
 
                         </tbody>
@@ -57,7 +58,7 @@ $this->view("/includes/header", $data);
         </div>
     </main>
 
-<?php
-$this->view("/includes/footer", $data);
-?>
+    <?php
+    $this->view("/includes/footer", $data);
+    ?>
 

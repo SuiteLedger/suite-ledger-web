@@ -24,6 +24,15 @@ function getUserStatuses(): array
     );
 }
 
+function getItemStatuses(): array
+{
+    return array(
+        new UserStatus(STATUS_ACTIVE, "Active"),
+        new UserStatus(STATUS_INACTIVE, "Inactive"),
+        new UserStatus(STATUS_DELETED, "Deleted"),
+    );
+}
+
 function validateUserType($userType)
 {
     if (in_array($userType, getUserTypes())) {
