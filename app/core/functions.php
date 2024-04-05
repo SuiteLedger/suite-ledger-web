@@ -51,7 +51,28 @@ function getLoggedInUser()
     return Authentication::getLoggedInUser();
 }
 
-function getCurrentTime() {
+function getCurrentDate() {
+    date_default_timezone_set('Asia/Colombo');
+    return date('Y-m-d');
+}
+
+function getCurrentDateTime() {
     date_default_timezone_set('Asia/Colombo');
     return date('Y-m-d H:i:s');
+}
+
+function isValidDateFormat($date) {
+
+    if (preg_match(REGEX_DATE, $date, $matches)) {
+        $year = (int)$matches[1];
+        $month = (int)$matches[2];
+        $day = (int)$matches[3];
+
+        if (checkdate($month, $day, $year)) {
+            return true;
+        }
+    }
+
+    return false;
+
 }

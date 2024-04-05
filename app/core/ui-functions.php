@@ -25,7 +25,7 @@ function displayInputError($error): void
     echo !empty($error) ? "<small class='text-danger'>$error</small>" : '';
 }
 
-function displaySelectOptions($value, $option, $selectedValue): void
+function displaySelectOptions($value, $option, $selectedValue=''): void
 {
     $optionString = "<option value='" . $value . "'";
     $optionString .= !empty($selectedValue) && $value == $selectedValue ? " selected>" : ">";
