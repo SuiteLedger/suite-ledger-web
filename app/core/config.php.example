@@ -20,11 +20,15 @@ const PAGE_URL_EDIT_USER = '/user/edit';
 const PAGE_URL_EDIT_USER_ROLE = '/userRole/edit';
 const PAGE_URL_LIST_APARTMENT_COMPLEX = '/apartmentComplex/list';
 const PAGE_URL_LIST_APARTMENT_UNIT = '/apartmentUnit/list';
+const PAGE_URL_LIST_PAYMENT = '/payment/list';
 const PAGE_URL_LIST_USER_ROLE = '/userRole/list';
 const PAGE_URL_LOGIN = '/login';
 
-const PAGE_URL_UPLOAD_PAYMENT_PROOF = '/PaymentProof/upload';
-const PAGE_URL_SUBMIT_PAYMENT_PROOF = '/PaymentProof/submit';
+const PAGE_URL_PENDING_PAYMENT = '/pendingPayment/list';
+const PAGE_URL_REVIEW_PAYMENT = '/reviewPayment/review';
+
+const PAGE_URL_UPLOAD_PAYMENT_PROOF = '/payment/upload';
+const PAGE_URL_SUBMIT_PAYMENT_PROOF = '/payment/submit';
 
 // User statuses
 const USER_STATUS_ACTIVE = 1;
@@ -36,16 +40,22 @@ const STATUS_INACTIVE = 2;
 const STATUS_DELETED = 3;
 
 // Payment statuses
-const PAYMENT_STATUS_SUBMITTED = 1;
+const PAYMENT_STATUS_PENDING_APPROVAL = 1;
+const PAYMENT_STATUS_APPROVED = 2;
+const PAYMENT_STATUS_REJECTED = 3;
 
 // MESSAGE types
 const MESSAGE_TYPE_SUCCESS = "SUCCESS";
 const MESSAGE_TYPE_ERROR = "ERROR";
 
+// patterns
+const REGEX_DATE = "/^(\d{4})-(\d{2})-(\d{2})$/";
+
 
 if ($_SERVER['SERVER_NAME'] == 'localhost') {
 
     define('ROOT_DIRECTORY', 'http://localhost/suite-ledger-web/public');
+    define('FILE_UPLOAD_DIRECTORY', ROOT_DIRECTORY . "/../uploads");
 
     // database
     define('DBHOST', '');
@@ -57,6 +67,7 @@ if ($_SERVER['SERVER_NAME'] == 'localhost') {
 } else {
 
     define('ROOT_DIRECTORY', 'http://localhost/suite-ledger-web/public');
+    define('FILE_UPLOAD_DIRECTORY', ROOT_DIRECTORY . "/../uploads");
 
     define('DBHOST', '');
     define('DBNAME', '');
