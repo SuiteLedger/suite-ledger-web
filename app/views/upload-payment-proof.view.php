@@ -52,7 +52,7 @@
 <!--                                    </div>-->
                                     <div class="orm-floating mb-3">
                                         <label for="formFile" class="form-label">Payment proof</label>
-                                        <input class="form-control" type="file" id="formFile" name="payment_proof_file">
+                                        <input class="form-control" type="file" id="formFile" name="payment_proof_file" required>
                                     </div>
                                     <div class="form-floating mb-3">
                                         <input class="form-control" min="1" id="amount" name="amount" type="number"

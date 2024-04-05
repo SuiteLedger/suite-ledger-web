@@ -33,6 +33,23 @@ function getItemStatuses(): array
     );
 }
 
+function getPaymentStatuses(): array
+{
+    return array(
+        new PaymentStatus(PAYMENT_STATUS_PENDING_APPROVAL, "Pending Approval"),
+        new PaymentStatus(PAYMENT_STATUS_APPROVED, "Approved"),
+        new PaymentStatus(PAYMENT_STATUS_REJECTED, "Rejected"),
+    );
+}
+
+function getPaymentTypeNameByTypeId($paymentTypes, $id) {
+    foreach ($paymentTypes as $type) {
+        if($type->id == $id) {
+            return $type->name;
+        }
+    }
+}
+
 function validateUserType($userType)
 {
     if (in_array($userType, getUserTypes())) {

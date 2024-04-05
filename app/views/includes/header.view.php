@@ -93,54 +93,68 @@
                             <!-- TODO: Replace above with actual apartment complex number -->
                         </nav>
                     </div>
+
                     <div class="sb-sidenav-menu-heading">Payments & Services</div>
-                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                       data-bs-target="#collapsePayments" aria-expanded="false" aria-controls="collapsePayments">
-                        <div class="sb-nav-link-icon"><i class="fas fa-money-bill-alt"></i></div>
-                        Payments
-                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                    </a>
-                    <div class="collapse" id="collapsePayments" aria-labelledby="headingOne"
-                         data-bs-parent="#sidenavAccordion">
-                        <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="<?= ROOT_DIRECTORY ?>/paymentProof/list">
-                                Manage Payment Proofs</a>
-                            <a class="nav-link" href="<?= ROOT_DIRECTORY ?>/paymentProof/history">
-                                Payment History</a>
-                            <a class="nav-link" href="<?= ROOT_DIRECTORY ?>/paymentProof/upload">
-                                Upload (To be removed)</a>
-                            <a class="nav-link" href="<?= ROOT_DIRECTORY ?>/paymentProof/edit">
-                                Edit (To be removed)</a>
-                        </nav>
-                    </div>
-                    <a class="nav-link" href="<?= ROOT_DIRECTORY ?>/maintenanceFee">
+                    <a class="nav-link" href="<?= ROOT_DIRECTORY ?>/pendingPayment/list/1">
+                        <!-- TODO: Remove above apartment id -->
                         <div class="sb-nav-link-icon">
-                            <i class="fas fa-wrench"></i>
+                            <i class="fas fa-tachometer-alt"></i>
                         </div>
-                        Maintenance Fees
-                    </a>
-                    <a class="nav-link" href="<?= ROOT_DIRECTORY ?>/subscription">
-                        <div class="sb-nav-link-icon">
-                            <i class="fas fa-calendar-check"></i>
-                        </div>
-                        Manage Subscriptions
+                        Pending Approval
                     </a>
 
-                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                       data-bs-target="#collapsePackage" aria-expanded="false" aria-controls="collapsePackage">
-                        <div class="sb-nav-link-icon"><i class="fas fa-archive"></i></div>
-                        Package
-                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    <a class="nav-link" href="<?= ROOT_DIRECTORY ?>/payment/list/1">
+                        <!-- TODO: Remove above apartment id -->
+                        <div class="sb-nav-link-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        Payment History
                     </a>
-                    <div class="collapse" id="collapsePackage" aria-labelledby="headingOne"
-                         data-bs-parent="#sidenavAccordion">
-                        <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="<?= ROOT_DIRECTORY ?>/package/add">
-                                Add Packages</a>
-                            <a class="nav-link" href="<?= ROOT_DIRECTORY ?>/package/list">
-                                List Packages</a>
-                        </nav>
-                    </div>
+
+
+<!--                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"-->
+<!--                       data-bs-target="#collapsePayments" aria-expanded="false" aria-controls="collapsePayments">-->
+<!--                        <div class="sb-nav-link-icon"><i class="fas fa-money-bill-alt"></i></div>-->
+<!--                        Payments-->
+<!--                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>-->
+<!--                    </a>-->
+<!--                    <div class="collapse" id="collapsePayments" aria-labelledby="headingOne"-->
+<!--                         data-bs-parent="#sidenavAccordion">-->
+<!--                        <nav class="sb-sidenav-menu-nested nav">-->
+<!--                            <a class="nav-link" href="--><?php //= ROOT_DIRECTORY ?><!--/pendingPayment/list/1">-->
+<!--                                Pending Approval</a>-->
+<!--                            <a class="nav-link" href="--><?php //= ROOT_DIRECTORY ?><!--/paymentApproval/history">-->
+<!--                                Payment History</a>-->
+<!--                        </nav>-->
+<!--                    </div>-->
+<!--                    <a class="nav-link" href="--><?php //= ROOT_DIRECTORY ?><!--/maintenanceFee">-->
+<!--                        <div class="sb-nav-link-icon">-->
+<!--                            <i class="fas fa-wrench"></i>-->
+<!--                        </div>-->
+<!--                        Maintenance Fees-->
+<!--                    </a>-->
+<!--                    <a class="nav-link" href="--><?php //= ROOT_DIRECTORY ?><!--/subscription">-->
+<!--                        <div class="sb-nav-link-icon">-->
+<!--                            <i class="fas fa-calendar-check"></i>-->
+<!--                        </div>-->
+<!--                        Manage Subscriptions-->
+<!--                    </a>-->
+<!---->
+<!--                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"-->
+<!--                       data-bs-target="#collapsePackage" aria-expanded="false" aria-controls="collapsePackage">-->
+<!--                        <div class="sb-nav-link-icon"><i class="fas fa-archive"></i></div>-->
+<!--                        Package-->
+<!--                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>-->
+<!--                    </a>-->
+<!--                    <div class="collapse" id="collapsePackage" aria-labelledby="headingOne"-->
+<!--                         data-bs-parent="#sidenavAccordion">-->
+<!--                        <nav class="sb-sidenav-menu-nested nav">-->
+<!--                            <a class="nav-link" href="--><?php //= ROOT_DIRECTORY ?><!--/package/add">-->
+<!--                                Add Packages</a>-->
+<!--                            <a class="nav-link" href="--><?php //= ROOT_DIRECTORY ?><!--/package/list">-->
+<!--                                List Packages</a>-->
+<!--                        </nav>-->
+<!--                    </div>-->
 
                     <div class="sb-sidenav-menu-heading">Access Management</div>
                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"

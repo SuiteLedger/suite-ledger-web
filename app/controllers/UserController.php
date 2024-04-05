@@ -101,9 +101,9 @@ class UserController extends Controller
 
             }
 
-            $data['errors'] = $user->errors;
-
         }
+
+        $data['errors'] = $user->errors;
 
         $this->view('add-user', $data);
 

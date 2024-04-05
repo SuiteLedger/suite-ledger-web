@@ -22,4 +22,9 @@ class Controller
     {
         $this->view('404');
     }
+
+    public function serverError()
+    {
+        $this->view('500');
+    }
 }

@@ -1,6 +1,6 @@
 <?php
 
-class PaymentProofController extends Controller
+class PaymentController extends Controller
 {
 
     public function index()
@@ -28,15 +28,20 @@ class PaymentProofController extends Controller
                 die;
             }
 
+            $apartmentUnitModel = new ApartmentUnit();
+            $apartmentUnit = $apartmentUnitModel->selectOne(['id'=>$_POST['apartment_unit']]);
+
             $paymentModel = new Payment();
             if($paymentModel->validate($_POST)) {
-                $_POST['submitted_date'] = getCurrentTime();
-                $_POST['status'] = PAYMENT_STATUS_SUBMITTED;
+                $_POST['payment_proof'] = $storedFileName;
+                $_POST['apartment_complex'] = $apartmentUnit->apartment_complex;
+                $_POST['submitted_date'] = getCurrentDateTime();
+                $_POST['status'] = PAYMENT_STATUS_PENDING_APPROVAL;
                 $paymentModel->insert($_POST);
             }
 
             setPageMessage(MESSAGE_TYPE_SUCCESS,
-                "Payment of Rs. " . $_POST['amount'] . " recorded successfully.");
+                "Payment of Rs. " . $_POST['amount'] . " recorded for verification.");
             redirect($pageUrl);
 
         }
@@ -80,9 +85,24 @@ class PaymentProofController extends Controller
         $this->view('payment-history');
     }
 
-    public function list()
+    public function list($apartmentComplexId)
     {
-        $this->view('list-payment-proofs');
+        $data['pageTitle'] = "List Payments";
+
+        if(empty($apartmentComplexId) || !is_numeric($apartmentComplexId)) {
+            $this->notFound();
+            die;
+        }
+
+        $paymentModel = new Payment();
+        $payments = $paymentModel->selectPaymentsByApartmentComplexAndPaymentStatus($apartmentComplexId);
+        $data['payments'] = $payments;
+
+        $paymentTypesModel = new PaymentType();
+        $paymentTypes = $paymentTypesModel->selectAll();
+        $data['paymentTypes'] = $paymentTypes;
+
+        $this->view('list-payments', $data);
     }
 
 }
