@@ -10,6 +10,12 @@ $this->view("/includes/header", $data);
                 <li class="breadcrumb-item">Payments</a></li>
                 <li class="breadcrumb-item active"><?= $pageTitle ?></li>
             </ol>
+            <div class="d-flex justify-content-end mb-3">
+                <a type="button" class="btn btn-primary"
+                href="<?=ROOT_DIRECTORY . PAGE_URL_EXPORT_PAYMENTS . "/" . $apartmentComplexId?>">
+                    <i class="fas fa-download"></i> Export Data
+                </a>
+            </div>
             <div class="card mb-4">
                 <div class="card-body">
                     <table id="datatablesSimple">
