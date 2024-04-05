@@ -18,6 +18,7 @@ const PAGE_URL_EDIT_APARTMENT_COMPLEX = '/apartmentComplex/edit';
 const PAGE_URL_EDIT_APARTMENT_UNIT = '/apartmentUnit/edit';
 const PAGE_URL_EDIT_USER = '/user/edit';
 const PAGE_URL_EDIT_USER_ROLE = '/userRole/edit';
+const PAGE_URL_EXPORT_PAYMENTS = '/payment/export';
 const PAGE_URL_LIST_APARTMENT_COMPLEX = '/apartmentComplex/list';
 const PAGE_URL_LIST_APARTMENT_UNIT = '/apartmentUnit/list';
 const PAGE_URL_LIST_PAYMENT = '/payment/list';
