@@ -94,6 +94,8 @@ class PaymentController extends Controller
             die;
         }
 
+        $data['apartmentComplexId'] = $apartmentComplexId;
+
         $paymentModel = new Payment();
         $payments = $paymentModel->selectPaymentsByApartmentComplexAndPaymentStatus($apartmentComplexId);
         $data['payments'] = $payments;
@@ -103,6 +105,64 @@ class PaymentController extends Controller
         $data['paymentTypes'] = $paymentTypes;
 
         $this->view('list-payments', $data);
+    }
+
+    public function export($apartmentComplexId) {
+        if(empty($apartmentComplexId) || !is_numeric($apartmentComplexId)) {
+            $this->notFound();
+            die;
+        }
+
+        $paymentModel = new Payment();
+        $payments = $paymentModel
+            ->selectPaymentsByApartmentComplexAndPaymentStatus($apartmentComplexId);
+
+        if(count($payments) < 1) {
+            setPageMessage(MESSAGE_TYPE_SUCCESS, "No records found to export");
+            redirect(PAGE_URL_LIST_PAYMENT . "/" . $apartmentComplexId);
+        }
+
+        $apartmentComplexModel = new ApartmentComplex();
+        $apartmentComplex = $apartmentComplexModel->selectOne(['id' => $apartmentComplexId]);
+
+
+        $paymentTypeModel = new PaymentType();
+        $paymentTypes = $paymentTypeModel->selectAll();
+
+        $delimiter = ",";
+        $filename = "payments-" . getCurrentDateTime() . ".csv";
+
+        $file = fopen ('php://memory', 'w');
+
+        $fields = array ('Apartment Complex',
+            'Apartment Unit',
+            'Amount',
+            'Payment Type',
+            'Submitted Date',
+            'Reviewed Date',
+            'Status');
+        fputcsv($file, $fields, $delimiter);
+
+        foreach ($payments as $payment) {
+            $row = array($apartmentComplex->name,
+                $payment->unit_no,
+                $payment->amount,
+                getPaymentTypeNameByTypeId($paymentTypes, $payment->payment_type),
+                $payment->submitted_date,
+                $payment->reviewed_date,
+                getTypeNameById(getPaymentStatuses(),  $payment->status)
+                );
+            fputcsv($file, $row, $delimiter);
+        }
+
+        fseek($file, 0);
+
+
+        header ( 'Content-Type: text/csv');
+        header ('Content-Disposition: attachment; filename="' . $filename . '";');
+
+        fpassthru($file);
+
     }
 
 }
