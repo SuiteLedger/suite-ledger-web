@@ -27,4 +27,9 @@ class Controller
     {
         $this->view('500');
     }
+
+    public function unauthorized()
+    {
+        $this->view('401');
+    }
 }

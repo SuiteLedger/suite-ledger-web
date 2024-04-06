@@ -10,6 +10,12 @@ class PendingPaymentController extends Controller
 
     public function list($apartmentComplexId = '')
     {
+
+        if(!Authentication::userHasPermission(USER_PERMISSION_LIST_PAYMENTS)) {
+            $this->unauthorized();
+            die;
+        }
+
         $data['pageTitle'] = "Payments - Pending Approval";
 
         if(isClientUser()) {
@@ -29,16 +35,6 @@ class PendingPaymentController extends Controller
 
         $this->view('list-payment-pending-approval', $data);
 
-    }
-
-    public function edit()
-    {
-        $this->view('edit-payment-proof');
-    }
-
-    public function history()
-    {
-        $this->view('payment-history');
     }
 
 

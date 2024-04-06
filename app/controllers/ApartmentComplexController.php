@@ -9,6 +9,12 @@ class ApartmentComplexController extends Controller
     }
 
     public function add() {
+
+        if(!Authentication::userHasPermission(USER_PERMISSION_ADD_APARTMENT_COMPLEX)) {
+            $this->unauthorized();
+            die;
+        }
+
         $this->manageApartment();
     }
 
@@ -17,6 +23,17 @@ class ApartmentComplexController extends Controller
     }
 
     public function delete($id= '') {
+
+        if(!Authentication::userHasPermission(USER_PERMISSION_DELETE_APARTMENT_COMPLEX)) {
+            $this->unauthorized();
+            die;
+        }
+
+        if(!Authentication::userHasPermission('delete_apartment_complex')) {
+            $this->unauthorized();
+            die;
+        }
+
         try {
             $apartmentComplex = new ApartmentComplex();
             $apartmentComplex->update($id, ['status' => STATUS_DELETED]);
@@ -29,6 +46,12 @@ class ApartmentComplexController extends Controller
 
     public function list()
     {
+
+        if(!Authentication::userHasPermission(USER_PERMISSION_LIST_APARTMENT_COMPLEX)) {
+            $this->unauthorized();
+            die;
+        }
+
         $data['pageTitle'] = "Apartments";
         $apartmentComplex = new ApartmentComplex();
         if(isClientUser()) {
