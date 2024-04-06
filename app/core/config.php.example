@@ -76,6 +76,7 @@ if ($_SERVER['SERVER_NAME'] == 'localhost') {
     define('EMAIL_SMTP_PORT', '587');
     define('EMAIL_USERNAME', '');
     define('EMAIL_PASSWORD', '');
+    define('CONTACT_US_MAIL', '');
 
 } else {
 
