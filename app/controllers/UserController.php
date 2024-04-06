@@ -8,19 +8,21 @@ class UserController extends Controller
     }
 
     public function add($apartmentComplexId='') {
-        $data['pageTitle'] = "Add User";
-        $clientUser = false;
-        if(!empty($apartmentComplexId)) {
-            $clientUser = true;
 
-            if (!is_numeric($apartmentComplexId)) {
-                $this->notFound();
-            }
-        } else {
-            $data['pageTitle'] = "Add Entity User";
+        $data['pageTitle'] = "Add Entity User";
+        $clientUser = false;
+
+        if(isClientUser()) {
+            $data['pageTitle'] = "Add User";
+            $clientUser = true;
         }
 
-        $data['pageUrl'] = PAGE_URL_ADD_USER . "/" . $apartmentComplex->id;
+        if (!empty($apartmentComplexId) && !is_numeric($apartmentComplexId)) {
+            $this->notFound();
+        }
+
+
+        $data['pageUrl'] = PAGE_URL_ADD_USER . "/" . $apartmentComplexId;
 
         if($clientUser) {
             $apartmentComplexModel = new ApartmentComplex();
