@@ -34,14 +34,16 @@ class ContactUsFormController extends Controller
                 $mail->Body = $_POST['message'];
                 $mail->send();
 
-                echo "Mail sent ...";
+               setPageMessage(MESSAGE_TYPE_SUCCESS,
+                   "Your message sent to SuiteLedger support team.");
             } catch (\Exception $e) {
-                echo "Error occured";
+                setPageMessage(MESSAGE_TYPE_ERROR,
+                    "Error occurred while sending the message. Please try again later");
             }
 
+            redirect("/#contact");
+
         }
-
-
 
 
     }
