@@ -55,6 +55,16 @@ const PAYMENT_STATUS_REJECTED = 3;
 const MESSAGE_TYPE_SUCCESS = "SUCCESS";
 const MESSAGE_TYPE_ERROR = "ERROR";
 
+// User permissions
+const USER_PERMISSION_ADD_APARTMENT_COMPLEX = "add_apartment_complex";
+const USER_PERMISSION_ADD_USER_ROLE = "add_user_role";
+const USER_PERMISSION_DELETE_APARTMENT_COMPLEX = "delete_apartment_complex";
+const USER_PERMISSION_EXPORT_PAYMENTS = "export_payments";
+const USER_PERMISSION_LIST_APARTMENT_COMPLEX = "list_apartment_complex";
+const USER_PERMISSION_LIST_PAYMENTS = "list_payments";
+const USER_PERMISSION_LIST_USER_ROLE = "list_user_role";
+const USER_PERMISSION_REVIEW_PAYMENTS = "review_payments";
+
 // patterns
 const REGEX_DATE = "/^(\d{4})-(\d{2})-(\d{2})$/";
 
