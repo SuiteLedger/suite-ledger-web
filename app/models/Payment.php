@@ -78,21 +78,38 @@ class Payment extends Model
 
     }
 
-    public function selectPaymentsByApartmentComplexAndPaymentStatus($apartmentComplexId, $paymentStatus = '')
+    public function selectPaymentsByApartmentComplexAndPaymentStatus($apartmentComplexId='', $paymentStatus = '')
     {
-        $query = "SELECT p.*, au.unit_no
-            FROM payment p
+        $query = "SELECT p.*, au.unit_no, ac.name as apartment_complex_name
+            FROM ((payment p
             JOIN apartment_unit au
-            ON p.apartment_unit = au.id
-            WHERE p.apartment_complex = :apartmentComplexId";
+                ON p.apartment_unit = au.id)
+            JOIN apartment_complex ac
+                ON au.apartment_complex = ac.id)";
 
-        if(!empty($paymentStatus)) {
-            $query .= " AND p.status = :paymentStatus";
-            return $this->query($query, ['apartmentComplexId' => $apartmentComplexId,
-                'paymentStatus' => $paymentStatus]);
+        $filter = [];
+
+        if(!empty($apartmentComplexId) || !empty($paymentStatus)) {
+            $query .= " WHERE ";
         }
 
-        return $this->query($query, ['apartmentComplexId' => $apartmentComplexId]);
+        if(!empty($apartmentComplexId)) {
+            $query .= "p.apartment_complex = :apartmentComplexId";
+            $filter['apartmentComplexId'] = $apartmentComplexId;
+            if(!empty($paymentStatus)) {
+                $query .= " AND ";
+            }
+        }
+
+        if(!empty($paymentStatus)) {
+            $query .= "p.status = :paymentStatus";
+            $filter['paymentStatus'] = $paymentStatus;
+//            return $this->query($query, ['apartmentComplexId' => $apartmentComplexId,
+//                'paymentStatus' => $paymentStatus]);
+        }
+
+//        return $this->query($query, ['apartmentComplexId' => $apartmentComplexId]);
+        return $this->query($query, $filter);
     }
 
 }

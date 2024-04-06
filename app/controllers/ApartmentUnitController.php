@@ -123,29 +123,22 @@ class ApartmentUnitController extends Controller
         }
     }
 
-    public function list($apartmentId)
+    public function list($apartmentId = '')
     {
 
         $data['pageTitle'] = "Apartment Units";
 
-        if (!empty($apartmentId)) {
-            if (!is_numeric($apartmentId)) {
+        if(isClientUser()) {
+            $apartmentId = getLoggedInUser()->apartment_complex;
+        } else {
+            if(!empty($apartmentId) && !is_numeric($apartmentId)) {
                 $this->notFound();
                 die;
             }
         }
 
-        $apartmentComplexModel = new ApartmentComplex();
-        $apartmentComplex = $apartmentComplexModel->selectOne(['id' => $apartmentId]);
-
-        if (!$apartmentComplex) {
-            $this->notFound();
-            die;
-        }
-
         $apartmentUnitModel = new ApartmentUnit();
-        $data['apartmentUnits']
-            = $apartmentUnitModel->selectAll(['apartment_complex' => $apartmentId], true);
+        $data['apartmentUnits'] = $apartmentUnitModel->selectApartmentUnitsByApartmentComplex($apartmentId);
         $this->view('list-apartment-units', $data);
     }
 

@@ -17,6 +17,7 @@ $this->view("/includes/header", $data);
                         <tr>
                             <!-- <th>Floor Number</th>-->
                             <!-- <th>Building</th>-->
+                            <th>Apartment Complex</th>
                             <th>Unit Number</th>
                             <!-- <th>Unit Name</th>-->
                             <th>Monthly Fee</th>
@@ -32,6 +33,7 @@ $this->view("/includes/header", $data);
                         <tr>
                             <!-- <th>Floor Number</th>-->
                             <!-- <th>Building</th>-->
+                            <th>Apartment Complex</th>
                             <th>Unit Number</th>
                             <!-- <th>Unit Name</th>-->
                             <th>Monthly Fee</th>
@@ -48,6 +50,7 @@ $this->view("/includes/header", $data);
 
                         <?php foreach ($apartmentUnits as $apartmentUnit) { ?>
                             <tr>
+                                <td><?= $apartmentUnit->apartment_complex_name ?></td>
                                 <td><?= $apartmentUnit->unit_no ?></td>
                                 <td><?= $apartmentUnit->monthly_fee ?></td>
                                 <td><?= $apartmentUnit->owner_name ?></td>

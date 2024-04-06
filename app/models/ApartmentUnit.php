@@ -37,4 +37,21 @@ class ApartmentUnit extends Model {
         return false;
 
     }
+
+    public function selectApartmentUnitsByApartmentComplex($apartmentComplex = '') {
+        $query = "SELECT au.*, ac.name as apartment_complex_name
+            FROM apartment_unit au
+            JOIN apartment_complex ac
+                ON au.apartment_complex = ac.id";
+
+        $filter = [];
+
+        if(!empty($apartmentComplex)) {
+            $query .= " WHERE au.apartment_complex =:apartmentComplex";
+            $filter['apartmentComplex'] = $apartmentComplex;
+        }
+
+        return $this->query($query, $filter);
+    }
+
 }

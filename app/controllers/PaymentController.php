@@ -85,29 +85,24 @@ class PaymentController extends Controller
         $this->view('payment-history');
     }
 
-    public function list($apartmentComplexId)
+    public function list($apartmentComplexId ='')
     {
         $data['pageTitle'] = "List Payments";
 
-        if(empty($apartmentComplexId) || !is_numeric($apartmentComplexId)) {
-            $this->notFound();
-            die;
-        }
-
         if(isClientUser()) {
             $apartmentComplexId = getLoggedInUser()->apartment_complex;
+        } else {
+            if(!empty($apartmentComplexId) && !is_numeric($apartmentComplexId)) {
+                $this->notFound();
+                die;
+            }
         }
 
         $data['apartmentComplexId'] = $apartmentComplexId;
 
         $paymentModel = new Payment();
-        if(isClientUser()) {
-            $payments = $paymentModel->selectPaymentsByApartmentComplexAndPaymentStatus($apartmentComplexId);
-            $data['payments'] = $payments;
-        } else {
-            $payments = $paymentModel->selectAll();
-            $data['payments'] = $payments;
-        }
+        $payments = $paymentModel->selectPaymentsByApartmentComplexAndPaymentStatus($apartmentComplexId);
+        $data['payments'] = $payments;
 
         $paymentTypesModel = new PaymentType();
         $paymentTypes = $paymentTypesModel->selectAll();
