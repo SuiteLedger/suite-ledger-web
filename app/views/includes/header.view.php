@@ -16,6 +16,7 @@
     <link href="<?= ROOT_DIRECTORY ?>/assets/css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
             crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -70,9 +71,11 @@
                     <div class="collapse" id="collapseComplex" aria-labelledby="headingOne"
                          data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
+                            <?php if(isEntityUser()) { ?>
                             <a class="nav-link" href="<?= ROOT_DIRECTORY ?>/apartmentComplex/add">
                                 Add Apartment complex
                             </a>
+                            <?php } ?>
                             <a class="nav-link" href="<?= ROOT_DIRECTORY ?>/apartmentComplex/list">List Apartment
                                 Complex</a>
                         </nav>

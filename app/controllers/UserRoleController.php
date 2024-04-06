@@ -127,6 +127,11 @@ class UserRoleController extends Controller
     {
         $data['pageTitle'] = "User Roles";
         $userRole = new UserRole();
+        if(isClientUser()) {
+            $data['userRoles'] = $userRole->selectAll(['user_type' => USER_TYPE_CLIENT, 'status' => STATUS_ACTIVE]);
+        } else {
+            $data['userRoles'] = $userRole->selectAll(['status' => STATUS_ACTIVE]);
+        }
         $data['userRoles'] = $userRole->selectAll(['status' => STATUS_ACTIVE]);
         $this->view('list-user-roles', $data);
     }

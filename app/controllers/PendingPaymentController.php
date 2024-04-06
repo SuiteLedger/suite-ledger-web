@@ -8,15 +8,24 @@ class PendingPaymentController extends Controller
         $this->notFound();
     }
 
-    public function list($apartmentComplexId)
+    public function list($apartmentComplexId = '')
     {
         $data['pageTitle'] = "Payments - Pending Approval";
 
-        $paymentsModel = new Payment();
-        $pendingPayments = $paymentsModel->selectPaymentsByApartmentComplexAndPaymentStatus(
-            $apartmentComplexId, PAYMENT_STATUS_PENDING_APPROVAL);
+        if(isClientUser()) {
+            $apartmentComplexId = getLoggedInUser()->apartment_complex;
+        }
 
-        $data['pendingPayments'] = $pendingPayments;
+        $paymentsModel = new Payment();
+        if(isClientUser()) {
+            $pendingPayments = $paymentsModel->selectPaymentsByApartmentComplexAndPaymentStatus(
+                $apartmentComplexId, PAYMENT_STATUS_PENDING_APPROVAL);
+
+            $data['pendingPayments'] = $pendingPayments;
+        } else {
+            $pendingPayments = $paymentsModel->selectAll(['status' => PAYMENT_STATUS_PENDING_APPROVAL]);
+            $data['pendingPayments'] = $pendingPayments;
+        }
 
         $this->view('list-payment-pending-approval', $data);
 

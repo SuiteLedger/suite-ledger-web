@@ -94,11 +94,20 @@ class PaymentController extends Controller
             die;
         }
 
+        if(isClientUser()) {
+            $apartmentComplexId = getLoggedInUser()->apartment_complex;
+        }
+
         $data['apartmentComplexId'] = $apartmentComplexId;
 
         $paymentModel = new Payment();
-        $payments = $paymentModel->selectPaymentsByApartmentComplexAndPaymentStatus($apartmentComplexId);
-        $data['payments'] = $payments;
+        if(isClientUser()) {
+            $payments = $paymentModel->selectPaymentsByApartmentComplexAndPaymentStatus($apartmentComplexId);
+            $data['payments'] = $payments;
+        } else {
+            $payments = $paymentModel->selectAll();
+            $data['payments'] = $payments;
+        }
 
         $paymentTypesModel = new PaymentType();
         $paymentTypes = $paymentTypesModel->selectAll();

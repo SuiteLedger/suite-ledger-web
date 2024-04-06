@@ -51,6 +51,14 @@ function getLoggedInUser()
     return Authentication::getLoggedInUser();
 }
 
+function isClientUser() {
+    return Authentication::getLoggedInUser()->user_type == USER_TYPE_CLIENT;
+}
+
+function isEntityUser() {
+    return Authentication::getLoggedInUser()->user_type == USER_TYPE_ENTITY;
+}
+
 function getCurrentDate() {
     date_default_timezone_set('Asia/Colombo');
     return date('Y-m-d');

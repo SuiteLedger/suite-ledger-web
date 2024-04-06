@@ -16,19 +16,19 @@ $this->view("/includes/header", $data);
 
                         <input type="hidden" name="id" value="<?=getInputValue('id')?>">
 
+                        <?php if($clientUser) { ?>
+                        <input type="hidden" name="apartment_complex"
+                               value="<?=$apartmentComplex->id?>">
+
                         <div class="form-group mb-3">
-                            <label for="user_type">User Type:</label>
-                            <select class="form-control" id="user_type" name="user_type" required>
-                                <?php
-                                foreach (getUserTypes() as $userType) {
-                                    displaySelectOptions($userType->getId(),
-                                        $userType->getName(),
-                                        getInputValue("user_type"));
-                                }
-                                ?>
+                            <label for="apartment_complex">Apartment Complex:</label>
+                            <select class="form-select" id="apartment_complex" name="apartment_complex" disabled>
+                                <option value="<?=$apartmentComplex->id?>" selected>
+                                    <?=$apartmentComplex->name?>
+                                </option>
                             </select>
-                            <?= displayInputError($errors['user_type']) ?>
                         </div>
+                        <?php }?>
 
                         <div class="form-group mb-3">
                             <label for="name">Full Name:</label>

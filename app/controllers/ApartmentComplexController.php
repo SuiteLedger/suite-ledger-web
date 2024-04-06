@@ -31,7 +31,13 @@ class ApartmentComplexController extends Controller
     {
         $data['pageTitle'] = "Apartments";
         $apartmentComplex = new ApartmentComplex();
-        $data['apartments'] = $apartmentComplex->selectAll([], true);
+        if(isClientUser()) {
+            $data['apartments'] = $apartmentComplex->selectAll(['id' => getLoggedInUser()->apartment_complex],
+                true);
+        } else {
+            $data['apartments'] = $apartmentComplex->selectAll([], true);
+        }
+
         $this->view('list-apartment-complex', $data);
     }
 

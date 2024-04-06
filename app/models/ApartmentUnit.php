@@ -22,7 +22,7 @@ class ApartmentUnit extends Model {
         'updated_date'
         ];
 
-    public function validate($data, $editItem) {
+    public function validate($data, $editItem=false) {
 
         $this->errors = [];
 
