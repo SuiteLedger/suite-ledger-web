@@ -12,9 +12,13 @@ class ApartmentUnitController extends Controller
 
         $data['pageTitle'] = "Add Apartment Units";
 
-        if (empty($apartmentComplexId) || !is_numeric($apartmentComplexId)) {
-            $this->notFound();
-            die;
+        if(isClientUser()) {
+            $apartmentComplexId = getLoggedInUser()->apartment_complex;
+        } else {
+            if (empty($apartmentComplexId) || !is_numeric($apartmentComplexId)) {
+                $this->notFound();
+                die;
+            }
         }
 
         $apartmentComplexModel = new ApartmentComplex();
