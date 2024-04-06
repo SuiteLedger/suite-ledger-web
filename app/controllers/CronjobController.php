@@ -73,10 +73,9 @@ class CronjobController extends Controller
 
             }
 
-            echo "Mail sent ...";
+            echo "Finish executing job ...";
         } catch (\Exception $e) {
-            echo $e;
-            //echo "Error occured";
+            echo "Error occurred";
         }
 
 
