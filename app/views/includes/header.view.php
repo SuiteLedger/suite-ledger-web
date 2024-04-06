@@ -91,23 +91,20 @@
                         <nav class="sb-sidenav-menu-nested nav">
                             <a class="nav-link" href="<?= ROOT_DIRECTORY ?>/apartmentUnit/add">
                                 Add Apartment Units</a>
-                            <a class="nav-link" href="<?= ROOT_DIRECTORY ?>/apartmentUnit/list/1">
+                            <a class="nav-link" href="<?= ROOT_DIRECTORY ?>/apartmentUnit/list">
                                 List Apartment Units</a>
-                            <!-- TODO: Replace above with actual apartment complex number -->
                         </nav>
                     </div>
 
                     <div class="sb-sidenav-menu-heading">Payments & Services</div>
-                    <a class="nav-link" href="<?= ROOT_DIRECTORY ?>/pendingPayment/list/1">
-                        <!-- TODO: Remove above apartment id -->
+                    <a class="nav-link" href="<?= ROOT_DIRECTORY ?>/pendingPayment/list">
                         <div class="sb-nav-link-icon">
                             <i class="fas fa-tachometer-alt"></i>
                         </div>
                         Pending Approval
                     </a>
 
-                    <a class="nav-link" href="<?= ROOT_DIRECTORY ?>/payment/list/1">
-                        <!-- TODO: Remove above apartment id -->
+                    <a class="nav-link" href="<?= ROOT_DIRECTORY ?>/payment/list">
                         <div class="sb-nav-link-icon">
                             <i class="fas fa-tachometer-alt"></i>
                         </div>

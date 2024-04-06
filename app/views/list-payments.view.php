@@ -21,6 +21,7 @@ $this->view("/includes/header", $data);
                     <table id="datatablesSimple">
                         <thead>
                         <tr>
+                            <th>Apartment Complex</th>
                             <th>Apartment Unit</th>
                             <th>Amount</th>
                             <th>Payment Type</th>
@@ -32,6 +33,7 @@ $this->view("/includes/header", $data);
                         </thead>
                         <tfoot>
                         <tr>
+                            <th>Apartment Complex</th>
                             <th>Apartment Unit</th>
                             <th>Amount</th>
                             <th>Payment Type</th>
@@ -45,6 +47,7 @@ $this->view("/includes/header", $data);
 
                         <?php foreach ($payments as $payment) { ?>
                             <tr>
+                                <th><?= $payment->apartment_complex_name ?></th>
                                 <th><?= $payment->unit_no ?></th>
                                 <th><?= $payment->amount ?></th>
                                 <th><?= getPaymentTypeNameByTypeId($paymentTypes, $payment->payment_type) ?></th>

@@ -15,6 +15,7 @@ $this->view("/includes/header", $data);
                     <table id="datatablesSimple">
                         <thead>
                         <tr>
+                            <th>Apartment Complex</th>
                             <th>Apartment Unit</th>
                             <th>Amount</th>
                             <th>Submitted Date</th>
@@ -23,6 +24,7 @@ $this->view("/includes/header", $data);
                         </thead>
                         <tfoot>
                         <tr>
+                            <th>Apartment Complex</th>
                             <th>Apartment Unit</th>
                             <th>Amount</th>
                             <th>Submitted Date</th>
@@ -33,6 +35,7 @@ $this->view("/includes/header", $data);
 
                         <?php foreach ($pendingPayments as $pendingPayment) { ?>
                         <tr>
+                            <th><?=$pendingPayment->apartment_complex_name?></th>
                             <th><?=$pendingPayment->unit_no?></th>
                             <th><?=$pendingPayment->amount?></th>
                             <th><?=$pendingPayment->submitted_date?></th>
