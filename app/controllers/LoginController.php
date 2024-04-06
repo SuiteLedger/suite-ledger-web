@@ -5,6 +5,12 @@ class LoginController extends Controller
 
     public function index()
     {
+
+        if(isset($_SESSION['LOGGED_IN_USER'])){
+            redirect(PAGE_URL_DASHBOARD);
+            die;
+        }
+
         $data['pageTitle'] = "Login";
         $user = new User();
 
