@@ -75,18 +75,14 @@ class PaymentController extends Controller
         $this->view('upload-payment-proof', $data);
     }
 
-    public function edit()
-    {
-        $this->view('edit-payment-proof');
-    }
-
-    public function history()
-    {
-        $this->view('payment-history');
-    }
-
     public function list($apartmentComplexId ='')
     {
+
+        if(!Authentication::userHasPermission(USER_PERMISSION_LIST_PAYMENTS)) {
+            $this->unauthorized();
+            die;
+        }
+
         $data['pageTitle'] = "List Payments";
 
         if(isClientUser()) {
@@ -111,7 +107,13 @@ class PaymentController extends Controller
         $this->view('list-payments', $data);
     }
 
-    public function export($apartmentComplexId) {
+    public function export($apartmentComplexId = '') {
+
+        if(!Authentication::userHasPermission(USER_PERMISSION_EXPORT_PAYMENTS)) {
+            $this->unauthorized();
+            die;
+        }
+
         if(empty($apartmentComplexId) || !is_numeric($apartmentComplexId)) {
             $this->notFound();
             die;

@@ -15,6 +15,8 @@ $this->view("/includes/header", $data);
             <div class="card mb-4">
                 <div class="card-body">
                     <form method="post" action="<?= ROOT_DIRECTORY . $pageUrl ?>">
+                        <fieldset <?= Authentication::userHasPermission(
+                                USER_PERMISSION_ADD_APARTMENT_COMPLEX) ? '' : 'disabled' ?>>
                         <input type="hidden" name="id" value="<?=getInputValue('id')?>">
                         <div class="form-group mb-3"><label for="name">Complex Name:</label>
                             <input type="text" class="form-control" id="complex_name" name="name"
@@ -64,6 +66,7 @@ $this->view("/includes/header", $data);
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
+                        </fieldset>
                     </form>
 
                 </div>

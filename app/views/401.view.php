@@ -21,7 +21,7 @@
                             <h1 class="display-1">401</h1>
                             <p class="lead">Unauthorized</p>
                             <p>Access to this resource is denied.</p>
-                            <a href="index.html">
+                            <a href="<?= ROOT_DIRECTORY . PAGE_URL_DASHBOARD ?>">
                                 <i class="fas fa-arrow-left me-1"></i>
                                 Return to Dashboard
                             </a>
@@ -43,6 +43,6 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
-<script src="js/scripts.js"></script>
+<script src="<?= ROOT_DIRECTORY ?>/assets/js/scripts.js"></script>
 </body>
 </html>

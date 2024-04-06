@@ -4,6 +4,12 @@ class ReviewPaymentController extends Controller
 {
     public function review($paymentId)
     {
+
+        if(!Authentication::userHasPermission(USER_PERMISSION_REVIEW_PAYMENTS)) {
+            $this->unauthorized();
+            die;
+        }
+
         $data['pageTitle'] = "Review Payment";
         $data['pageUrl'] = ROOT_DIRECTORY . PAGE_URL_REVIEW_PAYMENT . "/" . $paymentId;
 
