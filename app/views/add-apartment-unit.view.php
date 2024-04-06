@@ -8,23 +8,25 @@ $this->view("/includes/header", $data);
                 <h1 class="mt-4"><?= $pageTitle ?></h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item">
-                        <a href="<?= ROOT_DIRECTORY . PAGE_URL_LIST_APARTMENT_UNIT . "/1"  ?>">Apartment</a>
-                        <!--  TODO: Replace above with correct apartment complex number -->
+                        <a href="<?= ROOT_DIRECTORY . PAGE_URL_LIST_APARTMENT_UNIT
+                        . "/". $apartmentComplex->id  ?>">Apartment</a>
                     </li>
-                    <li class="breadcrumb-item active">Add an Apartment Unit</li>
+                    <li class="breadcrumb-item active"><?= $pageTitle ?></li>
                 </ol>
                 <div class="card mb-4">
                     <div class="card-body">
                         <form method="post" action="<?= ROOT_DIRECTORY . $pageUrl ?>" id="add-apartment-unit-form">
 
                             <input type="hidden" name="id" value="<?=getInputValue('id')?>">
+                            <input type="hidden" name="apartment_complex"
+                                   value="<?=$apartmentComplex->id?>">
 
                             <div class="form-group mb-3">
                                 <label for="apartment_complex">Apartment Complex:</label>
                                 <select class="form-select" id="apartment_complex" name="apartment_complex" disabled>
-                                    <option value="1" selected>Complex 1</option>
-                                    <option value="complex2">Complex 2</option>
-                                    <option value="complex3">Complex 3</option>
+                                    <option value="<?=$apartmentComplex->id?>" selected>
+                                        <?=$apartmentComplex->name?>
+                                    </option>
                                 </select>
                             </div>
 

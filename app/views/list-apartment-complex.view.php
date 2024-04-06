@@ -10,6 +10,7 @@ $this->view("/includes/header", $data);
                 <li class="breadcrumb-item">Apartment</a></li>
                 <li class="breadcrumb-item active">List Apartment Complexes</li>
             </ol>
+
             <div class="card mb-4">
                 <div class="card-body">
                     <table id="datatablesSimple">
@@ -52,6 +53,22 @@ $this->view("/includes/header", $data);
                                     <button type="button" class="btn btn-danger btn-sm delete-btn"
                                             onclick="deleteItem(<?= $apartment->id ?>)">Delete
                                     </button>
+                                    <a type="button" class="btn btn-primary btn-sm edit-btn"
+                                       href="<?= ROOT_DIRECTORY . PAGE_URL_ADD_APARTMENT_UNIT
+                                       . "/" . $apartment->id ?>">Add Unit
+                                    </a>
+                                    <a type="button" class="btn btn-primary btn-sm edit-btn"
+                                       href="<?= ROOT_DIRECTORY . PAGE_URL_LIST_APARTMENT_UNIT
+                                       . "/" . $apartment->id ?>">List Unit
+                                    </a>
+                                    <a type="button" class="btn btn-primary btn-sm edit-btn"
+                                       href="<?= ROOT_DIRECTORY . PAGE_URL_ADD_USER
+                                       . "/" . $apartment->id ?>">Add User
+                                    </a>
+                                    <a type="button" class="btn btn-primary btn-sm edit-btn"
+                                       href="<?= ROOT_DIRECTORY . PAGE_URL_LIST_USER
+                                       . "/" . $apartment->id ?>">List User
+                                    </a>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -59,6 +76,21 @@ $this->view("/includes/header", $data);
                     </table>
                 </div>
             </div>
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    Action
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Separated link</a></li>
+                </ul>
+            </div>
+
+
         </div>
     </main>
 
