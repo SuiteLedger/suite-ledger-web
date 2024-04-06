@@ -62,14 +62,14 @@
 <div class="container">
     <div class="invoice-header">
         <img src="https://i.ibb.co/7p5hHfn/suiteledger-logo.png">
-        <h2>ABC Apartments</h2>
+        <h2>{{COMPANY_NAME}}</h2>
         <p>Invoice for Maintenance Charges</p>
     </div>
     <div class="invoice-details">
         <table style="width: 50%">
-            <tr><td><strong>Billed To:</strong></td><td>Kasun Franando</td></tr>
-            <tr><td><strong>Invoice Date:</strong></td><td>2024-04-06</td></tr>
-            <tr><td><strong>Due Date:</strong></td><td>2024-04-31</td></tr>
+            <tr><td><strong>Billed To:</strong></td><td>{{CUSTOMER_NAME}}</td></tr>
+            <tr><td><strong>Invoice Date:</strong></td><td>{{INVOICE_DATE}}</td></tr>
+            <tr><td><strong>Due Date:</strong></td><td>{{DUE_DATE}}</td></tr>
         </table>
 
     </div>
@@ -81,25 +81,25 @@
             <th>This Month Charge</th>
         </tr>
         <tr>
-            <td>$100</td>
-            <td>$100</td>
-            <td>$100</td>
-            <td>$100</td>
+            <td>{{BALANCE_BF}}</td>
+            <td>{{APPROVED_PAYMENTS}}</td>
+            <td>{{PENDING_APPROVALS}}</td>
+            <td>{{THIS_MOTH_CHARGE}}</td>
         </tr>
     </table>
     <div class="total">
-        <p><strong>Estimated Total: $100</strong></p>
+        <p><strong>Estimated Total: {{ESTIMATED_TOTAL}}</strong></p>
     </div>
 
     <div class="footer">
         <p style="text-align: center;">
         <p>Make your payment and click bellow button to upload the payment proof for verification</p>
-        <a href="{PAYMENT_URL}"
+        <a href="{{PAYMENT_LINK}}"
            style="background-color: #007BFF; color: white; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; border-radius: 5px;">
             Upload Payment Proof
         </a>
 
-        <p><small>If you have any questions about this invoice, please contact test@test.com</small></p>
+        <p><small>If you have any questions about this invoice, please contact {{COMPANY_EMAIL}}</small></p>
     </div>
 </div>
 </body>

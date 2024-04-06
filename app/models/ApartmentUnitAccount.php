@@ -47,4 +47,16 @@ class ApartmentUnitAccount extends Model {
             set approved_payments = " . $amount . " where apartment_unit = " . $apartmentId;
         return $this->query($query);
     }
+
+    public function getDataForCronJob() {
+        $query = "SELECT aua.*, au.*, ac.*
+            FROM ((apartment_unit_account aua
+            JOIN apartment_unit au
+                ON aua.apartment_unit = au.id) 
+                JOIN apartment_complex ac
+                    ON au.apartment_complex = ac.id) ";
+
+        return $this->query($query);
+    }
+
 }
