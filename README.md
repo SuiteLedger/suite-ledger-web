@@ -37,7 +37,7 @@ SuiteLedger uses PHPMailer for mail sending.
 duplicate `app/core/config.php.example` file within the same directory and rename it to `config.php`
 
 - Database related configuration
-  - `DBHOST`` - Your database host
+  - `DBHOST` - Your database host
   - `DBNAME` - name of the database you use for Suiteledger
   - `DBUSER` - Your database username
   - `DBPASSWORD` - Your database password
