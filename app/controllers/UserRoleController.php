@@ -132,7 +132,6 @@ class UserRoleController extends Controller
         } else {
             $data['userRoles'] = $userRole->selectAll(['status' => STATUS_ACTIVE]);
         }
-        $data['userRoles'] = $userRole->selectAll(['status' => STATUS_ACTIVE]);
         $this->view('list-user-roles', $data);
     }
 
