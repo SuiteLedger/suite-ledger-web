@@ -22,11 +22,11 @@ class ContactUsFormController extends Controller
                 $mail->Port = EMAIL_SMTP_PORT;
                 $mail->SMTPAuth = true;
                 $mail->Username = EMAIL_USERNAME;
-                $mail->Password = EMAIL_PASSWORD;
+                $mail->Password = CONTACT_US_MAIL;
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 
                 $mail->setFrom(EMAIL_USERNAME);
-                $mail->addAddress(EMAIL_USERNAME);
+                $mail->addAddress(CONTACT_US_MAIL);
                 $mail->addReplyTo($_POST['email']);
                 $mail->isHTML(true);
 

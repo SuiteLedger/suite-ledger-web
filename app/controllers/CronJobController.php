@@ -9,13 +9,12 @@ use PHPMailer\PHPMailer\Exception;
 
 require '../vendor/autoload.php';
 
-class InvoiceController extends Controller
+class CronJobController extends Controller
 {
 
     public function index()
     {
         try {
-
 
             $mail = new PHPMailer(true);
 
@@ -27,7 +26,7 @@ class InvoiceController extends Controller
             $mail->Password = EMAIL_PASSWORD;
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 
-            $mail->setFrom('amilaliyan@gmail.com');
+            $mail->setFrom(EMAIL_USERNAME);
             $mail->addAddress("naweenniroshan@gmail.com");
             $mail->addReplyTo('info@example.com');
             $mail->isHTML(true);

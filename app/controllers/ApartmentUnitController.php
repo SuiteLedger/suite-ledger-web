@@ -35,11 +35,20 @@ class ApartmentUnitController extends Controller
                 $_POST['created_by'] = Authentication::getLoggedInUser()->id;
                 $_POST['created_date'] = getCurrentDateTime();
                 $_POST['status'] = STATUS_ACTIVE;
-                $result = $apartmentUnitModel->insert($_POST);
+                $newApartmentUnitId = $apartmentUnitModel->insert($_POST);
+
+                $apartmentUnitAccountModel = new ApartmentUnitAccount();
+                $apartmentUnitAccountModel->insert([
+                    'apartment_unit' => $newApartmentUnitId,
+                    'balance' => 0,
+                    'approved_payments' => 0,
+                    'pending_approval' => 0,
+                    'last_updated_date' => getCurrentDateTime()
+                ]);
 
                 setPageMessage(MESSAGE_TYPE_SUCCESS,
                     "Apartment unit \"" . $_POST['unit_no'] . "\" created successfully.");
-                redirect(PAGE_URL_ADD_APARTMENT_COMPLEX);
+                redirect($data['pageUrl']);
 
             }
             $data['errors'] = $apartmentUnitModel->errors;
