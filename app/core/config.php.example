@@ -9,6 +9,7 @@ const PAGE_URL_ADD_APARTMENT_COMPLEX = '/apartmentComplex/add';
 const PAGE_URL_ADD_APARTMENT_UNIT = '/apartmentUnit/add';
 const PAGE_URL_ADD_USER = '/user/add';
 const PAGE_URL_ADD_USER_ROLE = '/userRole/add';
+const PAGE_URL_CONTACT_US_FORM = '/contactUsForm';
 const PAGE_URL_DASHBOARD = '/dashboard';
 
 const PAGE_URL_DELETE_APARTMENT_COMPLEX = '/apartmentComplex/delete';
@@ -65,6 +66,12 @@ if ($_SERVER['SERVER_NAME'] == 'localhost') {
     define('DBPASSWORD', '');
     define('DBDRIVER', 'mysql');
 
+    // email
+    define('EMAIL_SMTP_HOST', 'smtp.gmail.com');
+    define('EMAIL_SMTP_PORT', '587');
+    define('EMAIL_USERNAME', '');
+    define('EMAIL_PASSWORD', '');
+
 } else {
 
     define('ROOT_DIRECTORY', 'http://localhost/suite-ledger-web/public');
@@ -75,5 +82,10 @@ if ($_SERVER['SERVER_NAME'] == 'localhost') {
     define('DBUSER', '');
     define('DBPASSWORD', '');
     define('DBDRIVER', 'mysql');
+
+    define('EMAIL_SMTP_HOST', '');
+    define('EMAIL_SMTP_PORT', '');
+    define('EMAIL_USERNAME', '');
+    define('EMAIL_PASSWORD', '');
 
 }

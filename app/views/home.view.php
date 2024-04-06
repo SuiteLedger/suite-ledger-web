@@ -83,7 +83,8 @@
                     <h2>Contact us</h2>
                     <p class="lead">Reach out to us here to get started!</p>
 
-                    <form id="contact-form">
+                    <form method="post" id="contact-form"
+                          action="<?php echo "http://localhost/suite-ledger-web/public/contactUsForm"; ?>">
                         <div class="mb-3">
                             <label for="fullName" class="form-label">Full Name</label>
                             <input type="text" class="form-control" id="fullName" name="fullName" required>
