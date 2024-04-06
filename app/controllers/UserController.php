@@ -12,15 +12,15 @@ class UserController extends Controller
         $data['pageTitle'] = "Add Entity User";
         $clientUser = false;
 
-        if(isClientUser()) {
-            $data['pageTitle'] = "Add User";
-            $clientUser = true;
-        }
-
         if (!empty($apartmentComplexId) && !is_numeric($apartmentComplexId)) {
             $this->notFound();
         }
 
+        if(isClientUser()) {
+            $data['pageTitle'] = "Add User";
+            $clientUser = true;
+            $apartmentComplexId = getLoggedInUser()->apartment_complex;
+        }
 
         $data['pageUrl'] = PAGE_URL_ADD_USER . "/" . $apartmentComplexId;
 
