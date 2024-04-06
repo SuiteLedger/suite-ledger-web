@@ -47,6 +47,22 @@ class ReviewPaymentController extends Controller
                 $_POST['reviewed_by'] = getLoggedInUser()->id;
                 $_POST['reviewed_date'] = getCurrentDateTime();
                 $paymentModel->update($paymentId, $_POST);
+
+                $apartmentUnitAccountModel = new ApartmentUnitAccount();
+                $apartmentUnitAccount = $apartmentUnitAccountModel
+                    ->selectOne(['apartment_unit' => $apartmentUnit->id]);
+
+                $pendingApprovalAmount = $apartmentUnitAccount->pending_approval - $_POST['amount'];
+                if($pendingApprovalAmount < 0) {
+                    $pendingApprovalAmount = 0;
+                }
+                $apartmentUnitAccountModel->updatePendingApproval($apartmentUnit->id, $pendingApprovalAmount);
+
+                if($_POST["action"] == "approve") {
+                    $approvedPaymentAmount = $apartmentUnitAccount->approved_payments + $_POST['amount'];
+                    $apartmentUnitAccountModel->updateAprovedPayments($apartmentUnit->id, $approvedPaymentAmount);
+                }
+
                 setPageMessage(MESSAGE_TYPE_SUCCESS, "Payment status updated successfully.");
                 redirect(PAGE_URL_PENDING_PAYMENT . "/" . $apartmentComplex->id);
             }

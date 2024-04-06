@@ -38,6 +38,13 @@ class PaymentController extends Controller
                 $_POST['submitted_date'] = getCurrentDateTime();
                 $_POST['status'] = PAYMENT_STATUS_PENDING_APPROVAL;
                 $paymentModel->insert($_POST);
+
+                $apartmentUnitAccountModel = new ApartmentUnitAccount();
+                $apartmentUnitAccount = $apartmentUnitAccountModel
+                    ->selectOne(['apartment_unit' => $apartmentUnit->id]);
+                $pendingApprovalAmount = $apartmentUnitAccount->pending_approval + $_POST['amount'];
+                $apartmentUnitAccountModel->updatePendingApproval($apartmentUnit->id, $pendingApprovalAmount);
+
             }
 
             setPageMessage(MESSAGE_TYPE_SUCCESS,
@@ -114,9 +121,13 @@ class PaymentController extends Controller
             die;
         }
 
-        if(empty($apartmentComplexId) || !is_numeric($apartmentComplexId)) {
-            $this->notFound();
-            die;
+        if(isClientUser()) {
+            $apartmentComplexId = getLoggedInUser()->apartment_complex;
+        } else {
+            if(!empty($apartmentComplexId) && !is_numeric($apartmentComplexId)) {
+                $this->notFound();
+                die;
+            }
         }
 
         $paymentModel = new Payment();
@@ -128,8 +139,8 @@ class PaymentController extends Controller
             redirect(PAGE_URL_LIST_PAYMENT . "/" . $apartmentComplexId);
         }
 
-        $apartmentComplexModel = new ApartmentComplex();
-        $apartmentComplex = $apartmentComplexModel->selectOne(['id' => $apartmentComplexId]);
+//        $apartmentComplexModel = new ApartmentComplex();
+//        $apartmentComplex = $apartmentComplexModel->selectOne(['id' => $apartmentComplexId]);
 
 
         $paymentTypeModel = new PaymentType();
@@ -150,7 +161,7 @@ class PaymentController extends Controller
         fputcsv($file, $fields, $delimiter);
 
         foreach ($payments as $payment) {
-            $row = array($apartmentComplex->name,
+            $row = array($payment->apartment_complex_name,
                 $payment->unit_no,
                 $payment->amount,
                 getPaymentTypeNameByTypeId($paymentTypes, $payment->payment_type),
